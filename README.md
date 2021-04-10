@@ -4,6 +4,7 @@ Youtube App without ADs
 ## Pre-requisites
 * Install webOS SDK - https://webostv.developer.lge.com/sdk/installation/
 * Setup webOS app testing to load apps in developer mode - https://webostv.developer.lge.com/develop/app-test
+* Uninstall YouTube app.
 
 ## Building
 * Clone the repository
@@ -23,5 +24,5 @@ ares-install -d <alias of your TV> <.ipk file>
 ## Launching
 * The app will be available in the TV's app list or launch it using ares-cli.
 ```
-ares-launch -d <alias of your TV> com.youtube.noads
+ares-launch -d <alias of your TV> youtube.leanback.v4
 ```

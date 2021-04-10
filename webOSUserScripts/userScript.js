@@ -10,8 +10,8 @@ const settings = {
   disable_annotations: false,
 };
 
-const isRequestBlocked = (requestType, url) => {
-
+function isRequestBlocked(requestType, url) {
+  
   console.log(`[${requestType}] URL : ${url}`);
 
   if (settings.disable_ads && YOUTUBE_AD_REGEX.test(url)) {
@@ -49,7 +49,7 @@ XMLHttpRequest.prototype.open = function (...args) {
  * Wrapper over Fetch.
  */
 const origFetch = fetch;
-fetch = (...args) => {
+fetch = function (...args) {
   const requestType = "FETCH";
   const url = args[0];
 
