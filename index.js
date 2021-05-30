@@ -18,7 +18,9 @@ function concatenateUrlAndGetParams(ytUrl, path) {
 }
 
 function main() {
-    const launchParameters = window.PalmSystem.launchParams;
+    const launchParameters = window.PalmSystem
+      ? window.PalmSystem.launchParams
+      : window.launchParams;
     const youtubeLaunchUrlPath = extractLaunchUrlParams(launchParameters);
 
     window.location = concatenateUrlAndGetParams(YOUTUBE_TV_URL, youtubeLaunchUrlPath);
