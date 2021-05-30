@@ -11,8 +11,7 @@ const settings = {
 };
 
 function isRequestBlocked(requestType, url) {
-  
-  console.log(`[${requestType}] URL : ${url}`);
+  console.log("[" + requestType + "] URL : " + url);
 
   if (settings.disable_ads && YOUTUBE_AD_REGEX.test(url)) {
     console.log("%cBLOCK AD", "color: red;", url);
@@ -25,37 +24,36 @@ function isRequestBlocked(requestType, url) {
   }
 
   return false;
-
-};
+}
 
 /**
  * Reference - https://gist.github.com/sergeimuller/a609a9df7d30e2625a177123797471e2
- * 
+ *
  * Wrapper over XHR.
  */
 const origOpen = XMLHttpRequest.prototype.open;
-XMLHttpRequest.prototype.open = function (...args) {
+XMLHttpRequest.prototype.open = function () {
   const requestType = "XHR";
-  const url = args[1];
+  const url = arguments[1];
 
   if (isRequestBlocked(requestType, url)) {
     throw "Blocked";
   }
 
-  origOpen.apply(this, args);
+  origOpen.apply(this, arguments);
 };
 
 /**
  * Wrapper over Fetch.
  */
-const origFetch = fetch;
-fetch = function (...args) {
+const origFetch = window.fetch;
+fetch = function () {
   const requestType = "FETCH";
-  const url = args[0];
+  const url = arguments[0];
 
   if (isRequestBlocked(requestType, url)) {
     return;
   }
-  return origFetch(...args);
+  return origFetch.apply(this, arguments);
 
 };
