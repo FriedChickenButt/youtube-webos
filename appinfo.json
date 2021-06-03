@@ -4,9 +4,10 @@
   "vendor": "My Company",
   "type": "web",
   "main": "index.html",
-  "title": "Youtube Without ADs",
+  "title": "YouTube AdFree",
   "icon": "icon.png",
   "largeIcon": "largeIcon.png",
+  "iconColor": "#ff0000",
   "support360Content": true,
   "accessibility": {
     "supportsAudioGuidance": true
