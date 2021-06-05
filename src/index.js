@@ -10,7 +10,7 @@ function extractLaunchUrlParams(launchParameters) {
 }
 
 function concatenateUrlAndGetParams(ytUrl, path) {
-    if (path === null) {
+    if (!path) {
         return ytUrl;
     } else {
         return ytUrl + "?" + path;
