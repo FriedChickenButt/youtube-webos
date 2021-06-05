@@ -11,6 +11,10 @@
   "accessibility": {
     "supportsAudioGuidance": true
   },
+  "vendorExtension": {
+      "userAgent": "$browserName$/$browserVersion$ ($platformName$-$platformVersion$), _TV_$chipSetName$/$firmwareVersion$ (LG, $modelName$, $networkMode$)"
+  },
+  "trustLevel": "netcast",
   "privilegedJail": true,
   "supportQuickStart": true,
   "dialAppName": "YouTube",
