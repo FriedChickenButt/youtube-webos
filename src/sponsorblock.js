@@ -60,6 +60,7 @@ class SponsorBlockHandler {
   constructor(videoID, video) {
     this.videoID = videoID;
     this.video = video;
+    this.active = true;
   }
 
   async init() {
@@ -148,12 +149,15 @@ class SponsorBlockHandler {
     clearTimeout(this.nextSkip);
     this.nextSkip = null;
 
-    if (this.video.paused) {
-      console.info('Currently paused, ignoring...');
+    if (!this.active) {
+      console.info(this.videoID, 'No longer active, ignoring...');
       return;
     }
 
-    console.info(this.video.currentTime, this.segments);
+    if (this.video.paused) {
+      console.info(this.videoID, 'Currently paused, ignoring...');
+      return;
+    }
 
     // Sometimes timeupdate event (that calls scheduleSkip) gets fired right before
     // already scheduled skip routine below. Let's just look back a little bit
@@ -162,27 +166,30 @@ class SponsorBlockHandler {
     nextSegments.sort((s1, s2) => s1.segment[0] - s2.segment[0]);
 
     if (!nextSegments.length) {
-      console.info('No more segments');
+      console.info(this.videoID, 'No more segments');
       return;
     }
 
     const [start, end] = nextSegments[0].segment;
-    console.info('Scheduling skip of', nextSegments[0], 'in', start - this.video.currentTime);
+    console.info(this.videoID, 'Scheduling skip of', nextSegments[0], 'in', start - this.video.currentTime);
 
     this.nextSkip = setTimeout(() => {
       if (this.video.paused) {
-        console.info('Currently paused, ignoring...');
+        console.info(this.videoID, 'Currently paused, ignoring...');
         return;
       }
 
-      console.info('Skipping', nextSegments[0]);
+      console.info(this.videoID, 'Skipping', nextSegments[0]);
       this.video.currentTime = end;
       this.scheduleSkip();
     }, (start - this.video.currentTime) * 1000);
   }
 
   destroy() {
-    console.info('destroy');
+    console.info(this.videoID, 'Destroying');
+
+    this.active = false;
+
     if (this.nextSkip) {
       clearTimeout(this.nextSkip);
       this.nextSkip = null;
