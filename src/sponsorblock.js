@@ -152,6 +152,10 @@ class SponsorBlockHandler {
     }
 
     console.info(this.video.currentTime, this.segments);
+
+    // Sometimes progress event (that calls scheduleSkip) gets fired right before
+    // already scheduled skip routine below. Let's just look back a little bit
+    // and, in worst case, perform a skip at negative interval (immediately)...
     const nextSegments = this.segments.filter(seg => seg.segment[0] > this.video.currentTime - 0.1 && seg.segment[1] > this.video.currentTime - 0.1);
     nextSegments.sort((s1, s2) => s1.segment[0] - s2.segment[0]);
 
