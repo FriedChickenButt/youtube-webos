@@ -70,16 +70,16 @@ class SponsorBlockHandler {
     const results = await resp.json();
 
     const result = results.find((v) => v.videoID === this.videoID);
-    console.info('Got it:', result);
+    console.info(this.videoID, 'Got it:', result);
 
     if (!result || !result.segments || !result.segments.length) {
-      console.info('No segments found.');
+      console.info(this.videoID, 'No segments found.');
       return;
     }
 
     this.segments = result.segments;
 
-    console.info('Video found, binding...');
+    console.info(this.videoID, 'Video found, binding...');
 
     this.scheduleSkipHandler = () => this.scheduleSkip();
     this.durationChangeHandler = () => this.buildOverlay();
@@ -212,7 +212,7 @@ class SponsorBlockHandler {
 
     this.video.removeEventListener('play', this.scheduleSkipHandler);
     this.video.removeEventListener('pause', this.scheduleSkipHandler);
-    this.video.removeEventListener('progress', this.scheduleSkipHandler);
+    this.video.removeEventListener('timeupdate', this.scheduleSkipHandler);
     this.video.removeEventListener('durationchange', this.durationChangeHandler);
   }
 }
