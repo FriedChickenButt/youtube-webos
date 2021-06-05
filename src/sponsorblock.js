@@ -217,25 +217,33 @@ class SponsorBlockHandler {
   }
 }
 
-let sponsorblock = null;
+// When this global variable was declared using let and two consecutive hashchange
+// events were fired (due to bubbling? not sure...) the second call handled below
+// would not see the value change from first call, and that would cause multiple
+// SponsorBlockHandler initializations... This has been noticed on Chromium 38.
+// This either reveals some bug in chromium/webpack/babel scope handling, or
+// shows my lack of understanding of javascript. (or both)
+window.sponsorblock = null;
 
 window.addEventListener("hashchange", (evt) => {
   const newURL = new URL(location.hash.substring(1), location.href);
   const videoID = newURL.searchParams.get('v');
-  const needsReload = videoID && (!sponsorblock || sponsorblock.videoID != videoID);
+  const needsReload = videoID && (!window.sponsorblock || window.sponsorblock.videoID != videoID);
+
+  console.info('hashchange', videoID, window.sponsorblock, window.sponsorblock ? window.sponsorblock.videoID : null, needsReload);
 
   if (needsReload) {
-    if (sponsorblock) {
+    if (window.sponsorblock) {
       try {
-        sponsorblock.destroy();
+        window.sponsorblock.destroy();
       } catch (err) {
-        console.warn('sponsorblock.destroy() failed!', err);
+        console.warn('window.sponsorblock.destroy() failed!', err);
       }
-      sponsorblock = null;
+      window.sponsorblock = null;
     }
 
     const video = document.querySelector('video');
-    sponsorblock = new SponsorBlockHandler(videoID, video);
-    sponsorblock.init();
+    window.sponsorblock = new SponsorBlockHandler(videoID, video);
+    window.sponsorblock.init();
   }
 }, false);
