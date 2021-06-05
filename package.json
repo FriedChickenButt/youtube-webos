@@ -19,7 +19,12 @@
     "url": "https://github.com/FriedChickenButt/youtube-webos/issues"
   },
   "homepage": "https://github.com/FriedChickenButt/youtube-webos#readme",
-  "dependencies": {},
+  "dependencies": {
+    "core-js": "^3.13.1",
+    "regenerator-runtime": "^0.13.7",
+    "tiny-sha256": "^1.0.2",
+    "whatwg-fetch": "^3.6.2"
+  },
   "devDependencies": {
     "@babel/core": "^7.14.3",
     "@babel/preset-env": "^7.14.4",
