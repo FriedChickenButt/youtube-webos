@@ -8,17 +8,17 @@ Youtube App without ADs
 
 ## Building
 * Clone the repository
-```
+```sh
 git clone https://github.com/FriedChickenButt/youtube-webos.git
 ```
 * Enter the folder and build the App, this will generate a `*.ipk` file.
-```
+```sh
 cd youtube-webos
 
-# Optionally, if you haven't installed full SDK:
+# Install dependencies (need to do this only when updating local repository / package.json is changed)
 npm install
 
-npm run package
+npm run build && npm run package
 ```
 
 ## Installation
@@ -28,6 +28,11 @@ npm run deploy
 
 ## Launching
 * The app will be available in the TV's app list or launch it using ares-cli.
-```
+```sh
 npm run launch
+```
+
+To jump immediately into some specific video use:
+```sh
+npm run launch -- -p '{"contentTarget":"v=F8PGWLvn1mQ"}'
 ```
