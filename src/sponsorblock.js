@@ -64,7 +64,8 @@ class SponsorBlockHandler {
 
   async init() {
     const videoHash = sha256(this.videoID).substring(0, 4);
-    const resp = await fetch(`https://sponsor.ajay.app/api/skipSegments/${videoHash}`)
+    const categories = ["sponsor", "intro", "outro", "interaction", "selfpromo", "music_offtopic"];
+    const resp = await fetch(`https://sponsor.ajay.app/api/skipSegments/${videoHash}?categories=${encodeURIComponent(JSON.stringify(categories))}`);
     const results = await resp.json();
 
     const result = results.find((v) => v.videoID === this.videoID);
@@ -82,6 +83,8 @@ class SponsorBlockHandler {
     this.scheduleSkipHandler = () => this.scheduleSkip();
     this.durationChangeHandler = () => this.buildOverlay();
 
+    this.video.addEventListener('play', this.scheduleSkipHandler);
+    this.video.addEventListener('pause', this.scheduleSkipHandler);
     this.video.addEventListener('timeupdate', this.scheduleSkipHandler);
     this.video.addEventListener('durationchange', this.durationChangeHandler);
 
@@ -126,7 +129,6 @@ class SponsorBlockHandler {
           });
         }
       })
-      console.info(mutations);
     });
 
     this.sliderInterval = setInterval(() => {
@@ -168,6 +170,11 @@ class SponsorBlockHandler {
     console.info('Scheduling skip of', nextSegments[0], 'in', start - this.video.currentTime);
 
     this.nextSkip = setTimeout(() => {
+      if (this.video.paused) {
+        console.info('Currently paused, ignoring...');
+        return;
+      }
+
       console.info('Skipping', nextSegments[0]);
       this.video.currentTime = end;
       this.scheduleSkip();
@@ -196,6 +203,8 @@ class SponsorBlockHandler {
       this.segmentsoverlay = null;
     }
 
+    this.video.removeEventListener('play', this.scheduleSkipHandler);
+    this.video.removeEventListener('pause', this.scheduleSkipHandler);
     this.video.removeEventListener('progress', this.scheduleSkipHandler);
     this.video.removeEventListener('durationchange', this.durationChangeHandler);
   }
