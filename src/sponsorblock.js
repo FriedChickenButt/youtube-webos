@@ -192,7 +192,8 @@ class SponsorBlockHandler {
     }
 
     if (this.segmentsoverlay) {
-      this.segmentsoverlay.destroy();
+      this.segmentsoverlay.remove();
+      this.segmentsoverlay = null;
     }
 
     this.video.removeEventListener('progress', this.scheduleSkipHandler);
@@ -209,7 +210,11 @@ window.addEventListener("hashchange", (evt) => {
 
   if (needsReload) {
     if (sponsorblock) {
-      sponsorblock.destroy();
+      try {
+        sponsorblock.destroy();
+      } catch (err) {
+        console.warn('sponsorblock.destroy() failed!', err);
+      }
       sponsorblock = null;
     }
 
