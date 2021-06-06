@@ -1,5 +1,6 @@
 import './spatial-navigation-polyfill.js';
 import './ui.css';
+import {configRead, configWrite} from './config.js';
 
 // We handle key events ourselves.
 window.__spatialNavigation__.keyMode = 'NONE';
@@ -37,6 +38,16 @@ uiContainer.innerHTML = `
 `;
 
 document.querySelector('body').appendChild(uiContainer);
+
+uiContainer.querySelector('#__adblock').checked = configRead('enableAdBlock');
+uiContainer.querySelector('#__adblock').addEventListener('change', (evt) => {
+  configWrite('enableAdBlock', evt.target.checked);
+});
+
+uiContainer.querySelector('#__sponsorblock').checked = configRead('enableSponsorBlock');
+uiContainer.querySelector('#__sponsorblock').addEventListener('change', (evt) => {
+  configWrite('enableSponsorBlock', evt.target.checked);
+});
 
 const eventHandler = (evt) => {
   console.info('Key event:', evt.type, evt.charCode, evt.keyCode, evt.defaultPrevented);

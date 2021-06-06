@@ -1,4 +1,5 @@
 import sha256 from 'tiny-sha256';
+import {configRead} from './config';
 
 // Copied from https://github.com/ajayyy/SponsorBlock/blob/9392d16617d2d48abb6125c00e2ff6042cb7bebe/src/config.ts#L179-L233
 const barTypes = {
@@ -242,8 +243,12 @@ window.addEventListener("hashchange", (evt) => {
       window.sponsorblock = null;
     }
 
-    const video = document.querySelector('video');
-    window.sponsorblock = new SponsorBlockHandler(videoID, video);
-    window.sponsorblock.init();
+    if (configRead('enableSponsorBlock')) {
+      const video = document.querySelector('video');
+      window.sponsorblock = new SponsorBlockHandler(videoID, video);
+      window.sponsorblock.init();
+    } else {
+      console.info('SponsorBlock disabled, not loading');
+    }
   }
 }, false);
