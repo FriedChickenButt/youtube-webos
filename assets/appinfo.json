@@ -20,6 +20,5 @@
   "privilegedJail": true,
   "supportQuickStart": true,
   "dialAppName": "YouTube",
-  "disableBackHistoryAPI": true,
-  "noSplashOnLaunch": true
+  "disableBackHistoryAPI": true
 }
