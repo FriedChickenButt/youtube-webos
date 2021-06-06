@@ -30,6 +30,10 @@ module.exports = (env) => [
           test: /\.m?js$/,
           use: 'babel-loader',
         },
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader'],
+        },
       ],
     },
     plugins: [

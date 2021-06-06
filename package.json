@@ -31,6 +31,8 @@
     "@webosose/ares-cli": "^2.1.0",
     "babel-loader": "^8.2.2",
     "copy-webpack-plugin": "^9.0.0",
+    "css-loader": "^5.2.6",
+    "style-loader": "^2.0.0",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0"
   }

@@ -1,0 +1,34 @@
+.ytaf-ui-container {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    right: 10%;
+    bottom: 10%;
+
+    background: rgba(0,0,0,0.8);
+    color: white;
+    border-radius: 20px;
+    padding: 20px;
+    z-index: 9999;
+    font-size: 1.5rem;
+}
+
+.ytaf-ui-container :focus {
+    outline: 4px red solid;
+}
+
+.ytaf-ui-container h1 {
+    margin: 0;
+    margin-bottom: 0.5em;
+    text-align: center;
+}
+
+.ytaf-ui-container input[type=checkbox] {
+    width: 2rem;
+    height: 1.5rem;
+}
+
+.ytaf-ui-container label {
+    display: block;
+    font-size: 2rem;
+}
