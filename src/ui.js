@@ -34,7 +34,7 @@ uiContainer.addEventListener("keydown", (evt) => {
 uiContainer.innerHTML = `
 <h1>webOS YouTube Extended</h1>
 <label for="__adblock"><input type="checkbox" id="__adblock" /> Enable AdBlocking</label>
-<label for="__sponsorblock"><input type="checkbox" id="__sponsorblock" /> Enable SponsorBlock</label>
+<label for="__sponsorblock"><input type="checkbox" id="__sponsorblock" /> Enable SponsorBlock<div><small>Sponsor segments skipping - https://sponsor.ajay.app</small></div></label>
 `;
 
 document.querySelector('body').appendChild(uiContainer);
