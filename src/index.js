@@ -13,7 +13,7 @@ function concatenateUrlAndGetParams(ytUrl, path) {
     if (!path) {
         return ytUrl;
     } else {
-        return ytUrl + "?" + path;
+        return ytUrl + "#?" + path;
     }
 }
 
@@ -22,8 +22,11 @@ function main() {
       ? window.PalmSystem.launchParams
       : window.launchParams;
     const youtubeLaunchUrlPath = extractLaunchUrlParams(launchParameters);
-
-    window.location = concatenateUrlAndGetParams(YOUTUBE_TV_URL, youtubeLaunchUrlPath);
+    if (youtubeLaunchUrlPath.indexOf('https://www.youtube.com/tv?') === 0) {
+      window.location = youtubeLaunchUrlPath;
+    } else {
+      window.location = concatenateUrlAndGetParams(YOUTUBE_TV_URL, youtubeLaunchUrlPath);
+    }
 }
 
 

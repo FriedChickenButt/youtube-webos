@@ -13,7 +13,8 @@
     "supportsAudioGuidance": true
   },
   "vendorExtension": {
-      "userAgent": "$browserName$/$browserVersion$ ($platformName$-$platformVersion$), _TV_$chipSetName$/$firmwareVersion$ (LG, $modelName$, $networkMode$)"
+      "userAgent": "$browserName$/$browserVersion$ ($platformName$-$platformVersion$), _TV_$chipSetName$/$firmwareVersion$ (LG, $modelName$, $networkMode$)",
+      "allowCrossDomain": true
   },
   "trustLevel": "netcast",
   "privilegedJail": true,
