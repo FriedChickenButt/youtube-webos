@@ -75,9 +75,15 @@ fetch = function () {
 const origParse = JSON.parse;
 JSON.parse = function () {
   const r = origParse.apply(this, arguments);
-  // WARNING: this function is *also* called by configRead...
   if (r.adPlacements && configRead('enableAdBlock')) {
     r.adPlacements = [];
   }
+
+  // Drop "masthead" ad from home screen
+  if (r?.contents?.tvBrowseRenderer?.content?.tvSurfaceContentRenderer?.content?.sectionListRenderer?.contents && configRead('enableAdBlock')) {
+    r.contents.tvBrowseRenderer.content.tvSurfaceContentRenderer.content.sectionListRenderer.contents = \
+      r.contents.tvBrowseRenderer.content.tvSurfaceContentRenderer.content.sectionListRenderer.contents.filter(elm => !elm.tvMastheadRenderer);
+  }
+
   return r;
 };
