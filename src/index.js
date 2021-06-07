@@ -22,7 +22,7 @@ function main() {
       ? window.PalmSystem.launchParams
       : window.launchParams;
     const youtubeLaunchUrlPath = extractLaunchUrlParams(launchParameters);
-    if (youtubeLaunchUrlPath.indexOf('https://www.youtube.com/tv?') === 0) {
+    if (typeof youtubeLaunchUrlPath === 'string' && youtubeLaunchUrlPath.indexOf('https://www.youtube.com/tv?') === 0) {
       window.location = youtubeLaunchUrlPath;
     } else {
       window.location = concatenateUrlAndGetParams(YOUTUBE_TV_URL, youtubeLaunchUrlPath);
