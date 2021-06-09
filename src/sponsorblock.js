@@ -1,60 +1,39 @@
 import sha256 from 'tiny-sha256';
 import {configRead} from './config';
+import {showNotification} from './ui';
 
 // Copied from https://github.com/ajayyy/SponsorBlock/blob/9392d16617d2d48abb6125c00e2ff6042cb7bebe/src/config.ts#L179-L233
 const barTypes = {
-    "preview-chooseACategory": {
-        color: "#ffffff",
-        opacity: "0.7"
-    },
-    "sponsor": {
-        color: "#00d400",
-        opacity: "0.7"
-    },
-    "preview-sponsor": {
-        color: "#007800",
-        opacity: "0.7"
-    },
-    "intro": {
-        color: "#00ffff",
-        opacity: "0.7"
-    },
-    "preview-intro": {
-        color: "#008080",
-        opacity: "0.7"
-    },
-    "outro": {
-        color: "#0202ed",
-        opacity: "0.7"
-    },
-    "preview-outro": {
-        color: "#000070",
-        opacity: "0.7"
-    },
-    "interaction": {
-        color: "#cc00ff",
-        opacity: "0.7"
-    },
-    "preview-interaction": {
-        color: "#6c0087",
-        opacity: "0.7"
-    },
-    "selfpromo": {
-        color: "#ffff00",
-        opacity: "0.7"
-    },
-    "preview-selfpromo": {
-        color: "#bfbf35",
-        opacity: "0.7"
-    },
-    "music_offtopic": {
-        color: "#ff9900",
-        opacity: "0.7"
-    },
-    "preview-music_offtopic": {
-        color: "#a6634a",
-        opacity: "0.7"
-    }
+  "sponsor": {
+    color: "#00d400",
+    opacity: "0.7",
+    name: "sponsored segment",
+  },
+  "intro": {
+    color: "#00ffff",
+    opacity: "0.7",
+    name: "intro",
+  },
+  "outro": {
+    color: "#0202ed",
+    opacity: "0.7",
+    name: "outro",
+  },
+  "interaction": {
+    color: "#cc00ff",
+    opacity: "0.7",
+    name: "interaction reminder",
+  },
+  "selfpromo": {
+    color: "#ffff00",
+    opacity: "0.7",
+    name: "self-promotion",
+  },
+  "music_offtopic": {
+    color: "#ff9900",
+    opacity: "0.7",
+    name: "non-music part",
+  },
 };
 
 class SponsorBlockHandler {
@@ -180,7 +159,8 @@ class SponsorBlockHandler {
         return;
       }
 
-      console.info(this.videoID, 'Skipping', nextSegments[0]);
+      const skipName = barTypes[segment.category]?.name || segment.category;
+      showNotification(`Skipping ${skipName}`);
       this.video.currentTime = end;
       this.scheduleSkip();
     }, (start - this.video.currentTime) * 1000);

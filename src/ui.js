@@ -8,7 +8,6 @@ window.__spatialNavigation__.keyMode = 'NONE';
 const ARROW_KEY_CODE = {37: 'left', 38: 'up', 39: 'right', 40: 'down'};
 
 const uiContainer = document.createElement('div');
-
 uiContainer.classList.add('ytaf-ui-container');
 uiContainer.style['display'] = 'none';
 uiContainer.setAttribute('tabindex', 0);
@@ -77,3 +76,35 @@ const eventHandler = (evt) => {
 document.addEventListener("keydown", eventHandler, true);
 document.addEventListener("keypress", eventHandler, true);
 document.addEventListener("keyup", eventHandler, true);
+
+
+export function showNotification(text, time=3000) {
+  if (!document.querySelector('.ytaf-notification-container')) {
+    console.info('Adding notification container');
+    const c = document.createElement('div');
+    c.classList.add('ytaf-notification-container');
+    document.body.appendChild(c);
+  }
+
+  const elm = document.createElement('div');
+  const elmInner = document.createElement('div');
+  elmInner.innerText = text;
+  elmInner.classList.add('message');
+  elmInner.classList.add('message-hidden');
+  elm.appendChild(elmInner);
+  document.querySelector('.ytaf-notification-container').appendChild(elm);
+
+  setTimeout(() => {
+    elmInner.classList.remove('message-hidden');
+  }, 100);
+  setTimeout(() => {
+    elmInner.classList.add('message-hidden');
+    setTimeout(() => {
+      elm.remove();
+    }, 1000);
+  }, time);
+}
+
+setTimeout(() => {
+  showNotification('Press [GREEN] to open YTAF configuration screen');
+}, 500);
