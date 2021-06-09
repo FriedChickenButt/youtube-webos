@@ -37,10 +37,20 @@ const barTypes = {
 };
 
 class SponsorBlockHandler {
-  constructor(videoID, video) {
+  video = null;
+  active = true;
+
+  attachVideoTimeout = null;
+  nextSkipTimeout = null;
+  sliderInterval = null;
+
+  observer = null;
+  scheduleSkipHandler = null;
+  durationChangeHandler = null;
+  segments = null;
+
+  constructor(videoID) {
     this.videoID = videoID;
-    this.video = video;
-    this.active = true;
   }
 
   async init() {
@@ -59,17 +69,30 @@ class SponsorBlockHandler {
 
     this.segments = result.segments;
 
-    console.info(this.videoID, 'Video found, binding...');
-
     this.scheduleSkipHandler = () => this.scheduleSkip();
     this.durationChangeHandler = () => this.buildOverlay();
+
+    this.attachVideo();
+    this.buildOverlay();
+  }
+
+  attachVideo() {
+    clearTimeout(this.attachVideoTimeout);
+    this.attachVideoTimeout = null;
+
+    this.video = document.querySelector('video');
+    if (!this.video) {
+      console.info(this.videoID, 'No video yet...');
+      this.attachVideoTimeout = setTimeout(() => this.attachVideo(), 100);
+      return;
+    }
+
+    console.info(this.videoID, 'Video found, binding...');
 
     this.video.addEventListener('play', this.scheduleSkipHandler);
     this.video.addEventListener('pause', this.scheduleSkipHandler);
     this.video.addEventListener('timeupdate', this.scheduleSkipHandler);
     this.video.addEventListener('durationchange', this.durationChangeHandler);
-
-    this.buildOverlay();
   }
 
   buildOverlay() {
@@ -78,7 +101,7 @@ class SponsorBlockHandler {
       return;
     }
 
-    if (!this.video.duration) {
+    if (!this.video || !this.video.duration) {
       console.info('No video duration yet');
       return;
     }
@@ -126,8 +149,8 @@ class SponsorBlockHandler {
   }
 
   scheduleSkip() {
-    clearTimeout(this.nextSkip);
-    this.nextSkip = null;
+    clearTimeout(this.nextSkipTimeout);
+    this.nextSkipTimeout = null;
 
     if (!this.active) {
       console.info(this.videoID, 'No longer active, ignoring...');
@@ -150,10 +173,11 @@ class SponsorBlockHandler {
       return;
     }
 
-    const [start, end] = nextSegments[0].segment;
-    console.info(this.videoID, 'Scheduling skip of', nextSegments[0], 'in', start - this.video.currentTime);
+    const [segment] = nextSegments;
+    const [start, end] = segment.segment;
+    console.info(this.videoID, 'Scheduling skip of', segment, 'in', start - this.video.currentTime);
 
-    this.nextSkip = setTimeout(() => {
+    this.nextSkipTimeout = setTimeout(() => {
       if (this.video.paused) {
         console.info(this.videoID, 'Currently paused, ignoring...');
         return;
@@ -171,9 +195,14 @@ class SponsorBlockHandler {
 
     this.active = false;
 
-    if (this.nextSkip) {
-      clearTimeout(this.nextSkip);
-      this.nextSkip = null;
+    if (this.nextSkipTimeout) {
+      clearTimeout(this.nextSkipTimeout);
+      this.nextSkipTimeout = null;
+    }
+
+    if (this.attachVideoTimeout) {
+      clearTimeout(this.attachVideoTimeout);
+      this.attachVideoTimeout = null;
     }
 
     if (this.sliderInterval) {
@@ -191,10 +220,12 @@ class SponsorBlockHandler {
       this.segmentsoverlay = null;
     }
 
-    this.video.removeEventListener('play', this.scheduleSkipHandler);
-    this.video.removeEventListener('pause', this.scheduleSkipHandler);
-    this.video.removeEventListener('timeupdate', this.scheduleSkipHandler);
-    this.video.removeEventListener('durationchange', this.durationChangeHandler);
+    if (this.video) {
+      this.video.removeEventListener('play', this.scheduleSkipHandler);
+      this.video.removeEventListener('pause', this.scheduleSkipHandler);
+      this.video.removeEventListener('timeupdate', this.scheduleSkipHandler);
+      this.video.removeEventListener('durationchange', this.durationChangeHandler);
+    }
   }
 }
 
@@ -224,8 +255,7 @@ window.addEventListener("hashchange", (evt) => {
     }
 
     if (configRead('enableSponsorBlock')) {
-      const video = document.querySelector('video');
-      window.sponsorblock = new SponsorBlockHandler(videoID, video);
+      window.sponsorblock = new SponsorBlockHandler(videoID);
       window.sponsorblock.init();
     } else {
       console.info('SponsorBlock disabled, not loading');
