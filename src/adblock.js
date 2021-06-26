@@ -1,3 +1,5 @@
+import {configRead} from './config';
+
 const YOUTUBE_REGEX = /^https?:\/\/(\w*.)?youtube.com/i;
 const YOUTUBE_AD_REGEX = /(doubleclick\.net)|(adservice\.google\.)|(youtube\.com\/api\/stats\/ads)|(&ad_type=)|(&adurl=)|(-pagead-id.)|(doubleclick\.com)|(\/ad_status.)|(\/api\/ads\/)|(\/googleads)|(\/pagead\/gen_)|(\/pagead\/lvz?)|(\/pubads.)|(\/pubads_)|(\/securepubads)|(=adunit&)|(googlesyndication\.com)|(innovid\.com)|(youtube\.com\/pagead\/)|(google\.com\/pagead\/)|(flashtalking\.com)|(googleadservices\.com)|(s0\.2mdn\.net\/ads)|(www\.youtube\.com\/ptracking)|(www\.youtube\.com\/pagead)|(www\.youtube\.com\/get_midroll_)/;
 const YOUTUBE_ANNOTATIONS_REGEX = /^https?:\/\/(\w*.)?youtube\.com\/annotations_invideo\?/;
@@ -12,6 +14,10 @@ const settings = {
 
 function isRequestBlocked(requestType, url) {
   console.log("[" + requestType + "] URL : " + url);
+
+  if (!configRead('enableAdBlock')) {
+    return false;
+  }
 
   if (settings.disable_ads && YOUTUBE_AD_REGEX.test(url)) {
     console.log("%cBLOCK AD", "color: red;", url);
@@ -69,8 +75,15 @@ fetch = function () {
 const origParse = JSON.parse;
 JSON.parse = function () {
   const r = origParse.apply(this, arguments);
-  if (r.adPlacements) {
+  if (r.adPlacements && configRead('enableAdBlock')) {
     r.adPlacements = [];
   }
+
+  // Drop "masthead" ad from home screen
+  if (r?.contents?.tvBrowseRenderer?.content?.tvSurfaceContentRenderer?.content?.sectionListRenderer?.contents && configRead('enableAdBlock')) {
+    r.contents.tvBrowseRenderer.content.tvSurfaceContentRenderer.content.sectionListRenderer.contents =
+      r.contents.tvBrowseRenderer.content.tvSurfaceContentRenderer.content.sectionListRenderer.contents.filter(elm => !elm.tvMastheadRenderer);
+  }
+
   return r;
 };

@@ -4,7 +4,8 @@
   "description": "Youtube App without ADs",
   "main": "index.js",
   "scripts": {
-    "package": "ares-package -n . -e node_modules -e .git",
+    "build": "webpack",
+    "package": "ares-package -n dist",
     "deploy": "ares-install youtube.leanback.v4_${npm_package_version}_all.ipk",
     "launch": "ares-launch youtube.leanback.v4"
   },
@@ -18,8 +19,21 @@
     "url": "https://github.com/FriedChickenButt/youtube-webos/issues"
   },
   "homepage": "https://github.com/FriedChickenButt/youtube-webos#readme",
-  "dependencies": {},
+  "dependencies": {
+    "core-js": "^3.13.1",
+    "regenerator-runtime": "^0.13.7",
+    "tiny-sha256": "^1.0.2",
+    "whatwg-fetch": "^3.6.2"
+  },
   "devDependencies": {
-    "@webosose/ares-cli": "^2.1.0"
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "@webosose/ares-cli": "^2.1.0",
+    "babel-loader": "^8.2.2",
+    "copy-webpack-plugin": "^9.0.0",
+    "css-loader": "^5.2.6",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0"
   }
 }
