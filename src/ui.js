@@ -104,7 +104,7 @@ export function showNotification(text, time=3000) {
     }, 1000);
   }, time);
 }
-/* Delay time to show the notification */
+/* Wait for everything fully load and then show the notification */
 setTimeout(() => {
   showNotification('Press [GREEN] to open YTAF configuration screen');
 }, 6400);
