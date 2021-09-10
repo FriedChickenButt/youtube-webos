@@ -41,6 +41,8 @@ module.exports = (env) => [
         patterns: [
           { context: 'assets', from: '**/*' },
           { context: 'src', from: 'index.html' },
+          { context: 'src', from: 'index.css' },
+          { context: 'src', from: 'video.mp4' },
         ]
       }),
     ],
