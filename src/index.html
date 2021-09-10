@@ -2,6 +2,26 @@
 <html>
 
 <head>
-	<script src="index.js"></script>
+<!-- Add the video -->
+	<link rel="stylesheet" href="index.css">
+	<video autoplay muted id="myVideo">
+		<source src="video.mp4" type="video/mp4">
+	  </video>
+<!-- Delay the ui.js file until the video finishes playing -->
+<script>  
+	  setTimeout(function() {
+
+		var head_ID = document.getElementsByTagName("head")[0]; 
+    
+		var script_element = document.createElement('script');
+
+		script_element.type = 'text/javascript';
+
+		script_element.src = "index.js";
+		head_ID.appendChild(script_element);
+	
+	}, 5800);
+</script>	
+
 </head>
 </html>
