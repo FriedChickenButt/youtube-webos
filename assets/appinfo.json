@@ -8,6 +8,7 @@
   "icon": "icon.png",
   "largeIcon": "largeIcon.png",
   "iconColor": "#ff0000",
+  "splashBackground": "video.mp4",
   "support360Content": true,
   "accessibility": {
     "supportsAudioGuidance": true
