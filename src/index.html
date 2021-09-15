@@ -1,27 +1,38 @@
 <!DOCTYPE html>
 <html>
-
 <head>
+	
 <!-- Add the video -->
 	<link rel="stylesheet" href="index.css">
 	<video autoplay muted id="myVideo">
 		<source src="video.mp4" type="video/mp4">
 	  </video>
-<!-- Delay the ui.js file until the video finishes playing -->
-<script>  
-	  setTimeout(function() {
-
-		var head_ID = document.getElementsByTagName("head")[0]; 
-    
-		var script_element = document.createElement('script');
-
-		script_element.type = 'text/javascript';
-
-		script_element.src = "index.js";
-		head_ID.appendChild(script_element);
 	
-	}, 5800);
-</script>	
+<!-- Change video to display full screen -->
+<style>  
+#myVideo {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	object-fit: cover;
+}
+</style>
+
+<!-- Make the time to run script more accurately by using "addEventListener" to detect when the video ends -->
+<script>
+	document.getElementById('myVideo').addEventListener('ended', myHandler, false);  
+		function myHandler(e) {                                                             
+
+	var head_ID = document.getElementsByTagName("head")[0];                    		
+	var script_element = document.createElement('script');                    		 
+	script_element.type = 'text/javascript';
+	script_element.src = "index.js";
+	head_ID.appendChild(script_element);
+
+}
+</script>
 
 </head>
 </html>
