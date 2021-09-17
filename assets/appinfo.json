@@ -9,6 +9,7 @@
   "largeIcon": "largeIcon.png",
   "iconColor": "#ff0000",
   "splashBackground": "video.mp4",
+  "SplashShowOnlyFirstTime": true,
   "support360Content": true,
   "accessibility": {
     "supportsAudioGuidance": true
