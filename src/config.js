@@ -2,6 +2,12 @@ const CONFIG_KEY = 'ytaf-configuration';
 const defaultConfig = {
   enableAdBlock: true,
   enableSponsorBlock: true,
+  enableSponsorBlockSponsor: true,
+  enableSponsorBlockIntro: true,
+  enableSponsorBlockOutro: true,
+  enableSponsorBlockInteraction: true,
+  enableSponsorBlockSelfPromo: true,
+  enableSponsorBlockMusicOfftopic: true,
 };
 
 let localConfig;
