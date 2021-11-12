@@ -1,6 +1,6 @@
 {
   "name": "youtube-webos",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Youtube App without ADs",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,8 @@
     "package": "ares-package -n dist",
     "deploy": "ares-install youtube.leanback.v4_${npm_package_version}_all.ipk",
     "launch": "ares-launch youtube.leanback.v4",
-    "version": "node tools/sync-version.js && git add appinfo.json"
+    "manifest": "node tools/gen-manifest.js youtube.leanback.v4.manifest.json",
+    "version": "node tools/sync-version.js && git add assets/appinfo.json"
   },
   "repository": {
     "type": "git",

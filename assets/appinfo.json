@@ -1,24 +1,24 @@
 {
-  "id": "youtube.leanback.v4",
-  "version": "0.0.2",
-  "vendor": "My Company",
-  "type": "web",
-  "main": "index.html",
-  "title": "YouTube AdFree",
-  "icon": "icon.png",
-  "largeIcon": "largeIcon.png",
-  "iconColor": "#ff0000",
-  "support360Content": true,
-  "accessibility": {
-    "supportsAudioGuidance": true
-  },
-  "vendorExtension": {
-      "userAgent": "$browserName$/$browserVersion$ ($platformName$-$platformVersion$), _TV_$chipSetName$/$firmwareVersion$ (LG, $modelName$, $networkMode$)",
-      "allowCrossDomain": true
-  },
-  "trustLevel": "netcast",
-  "privilegedJail": true,
-  "supportQuickStart": true,
-  "dialAppName": "YouTube",
-  "disableBackHistoryAPI": true
+    "id": "youtube.leanback.v4",
+    "version": "0.1.0",
+    "vendor": "My Company",
+    "type": "web",
+    "main": "index.html",
+    "title": "YouTube AdFree",
+    "icon": "icon.png",
+    "largeIcon": "largeIcon.png",
+    "iconColor": "#ff0000",
+    "support360Content": true,
+    "accessibility": {
+        "supportsAudioGuidance": true
+    },
+    "vendorExtension": {
+        "userAgent": "$browserName$/$browserVersion$ ($platformName$-$platformVersion$), _TV_$chipSetName$/$firmwareVersion$ (LG, $modelName$, $networkMode$)",
+        "allowCrossDomain": true
+    },
+    "trustLevel": "netcast",
+    "privilegedJail": true,
+    "supportQuickStart": true,
+    "dialAppName": "YouTube",
+    "disableBackHistoryAPI": true
 }

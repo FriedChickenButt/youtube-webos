@@ -16,7 +16,7 @@ fs.writeFileSync(
     type: appinfo.type,
     title: appinfo.title,
     appDescription: appinfo.appDescription,
-    iconUri: 'https://raw.githubusercontent.com/webosbrew/youtube-webos/main/assets/icon160.png',
+    iconUri: 'https://raw.githubusercontent.com/webosbrew/youtube-webos/main/assets/largeIcon.png',
     sourceUrl: 'https://github.com/webosbrew/youtube-webos',
     rootRequired: true,
     ipkUrl: ipkfile,
