@@ -7,7 +7,8 @@
     "build": "webpack",
     "package": "ares-package -n dist",
     "deploy": "ares-install youtube.leanback.v4_${npm_package_version}_all.ipk",
-    "launch": "ares-launch youtube.leanback.v4"
+    "launch": "ares-launch youtube.leanback.v4",
+    "version": "node tools/sync-version.js && git add appinfo.json"
   },
   "repository": {
     "type": "git",
