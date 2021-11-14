@@ -1,10 +1,20 @@
 # youtube-webos
-Youtube App without ADs
+YouTube App with extended functionalities
+
+## Features
+* Advertisements blocking
+* [SponsorBlock](https://sponsor.ajay.app/) integration
 
 ## Pre-requisites
-* (Optionally) Install webOS SDK - https://webostv.developer.lge.com/sdk/installation/
-* Setup webOS app testing to load apps in developer mode - https://webostv.developer.lge.com/develop/app-test
-* Uninstall YouTube app.
+* Official YouTube app needs to be uninstalled before installation.
+
+## Installation
+
+* Use [webOS Homebrew Channel](https://github.com/webosbrew/webos-homebrew-channel) - app is published in official webosbrew repo
+* Use [Device Manager app](https://github.com/webosbrew/dev-manager-desktop) - see [Releases](https://github.com/webosbrew/youtube-webos/releases) for a
+prebuilt `.ipk` binary file
+* Use official webOS/webOS OSE SDK: `ares-install youtube...ipk` (for webOS SDK configuration
+  see below)
 
 ## Building
 * Clone the repository
