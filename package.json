@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FriedChickenButt/youtube-webos.git"
+    "url": "git+https://github.com/webosbrew/youtube-webos.git"
   },
   "author": "",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/FriedChickenButt/youtube-webos/issues"
+    "url": "https://github.com/webosbrew/youtube-webos/issues"
   },
-  "homepage": "https://github.com/FriedChickenButt/youtube-webos#readme",
+  "homepage": "https://github.com/webosbrew/youtube-webos#readme",
   "dependencies": {
     "core-js": "^3.13.1",
     "regenerator-runtime": "^0.13.7",
