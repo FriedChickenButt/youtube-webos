@@ -36,6 +36,8 @@ const barTypes = {
   },
 };
 
+const sponsorblockAPI = 'https://sponsorblock.inf.re/api';
+
 class SponsorBlockHandler {
   video = null;
   active = true;
@@ -57,7 +59,7 @@ class SponsorBlockHandler {
   async init() {
     const videoHash = sha256(this.videoID).substring(0, 4);
     const categories = ["sponsor", "intro", "outro", "interaction", "selfpromo", "music_offtopic"];
-    const resp = await fetch(`https://sponsor.ajay.app/api/skipSegments/${videoHash}?categories=${encodeURIComponent(JSON.stringify(categories))}`);
+    const resp = await fetch(`${sponsorblockAPI}/skipSegments/${videoHash}?categories=${encodeURIComponent(JSON.stringify(categories))}`);
     const results = await resp.json();
 
     const result = results.find((v) => v.videoID === this.videoID);
