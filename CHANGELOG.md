@@ -13,3 +13,8 @@
 ## Version 0.1.0
 * [#10](https://github.com/FriedChickenButt/youtube-webos/issues/1): Added SponsorBlock integration
 * Added configuration UI activated by pressing green button
+
+## Version 0.1.1
+* Use alternative SponsorBlock API URL to work around untrusted Let's Encrypt
+  certificates
+* Increase initial notification delay
