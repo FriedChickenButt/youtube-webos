@@ -7,7 +7,11 @@ export function extractLaunchParams() {
 }
 
 export function handleLaunch(params) {
-  const { contentTarget } = params;
+  // We use our custom "target" param, since launches with "contentTarget"
+  // parameter do not respect "handlesRelaunch" appinfo option. We still
+  // fallback to "contentTarget" if our custom param is not specified.
+  //
+  const { target, contentTarget = target } = params;
 
   if (contentTarget && typeof contentTarget === 'string') {
     if (contentTarget.indexOf('https://www.youtube.com/tv?') === 0) {
@@ -15,10 +19,10 @@ export function handleLaunch(params) {
       window.location = contentTarget;
     } else {
       console.info('Launching from partial contentTarget:', contentTarget);
-      window.location = 'https://www.youtube.com/tv#?' + contentTarget;
+      window.location = 'https://www.youtube.com/tv#/?' + contentTarget;
     }
   } else {
     console.info('Default launch');
-    window.location = 'https://www.youtube.com/tv';
+    window.location = 'https://www.youtube.com/tv#/';
   }
 }

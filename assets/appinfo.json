@@ -16,6 +16,12 @@
         "userAgent": "$browserName$/$browserVersion$ ($platformName$-$platformVersion$), _TV_$chipSetName$/$firmwareVersion$ (LG, $modelName$, $networkMode$)",
         "allowCrossDomain": true
     },
+    "deeplinkingParams": "{\"target\":\"v=$CONTENTID\"}",
+    "inAppSearchParams": "{\"target\":\"q=$SEARCH_KEYWORD\"}",
+    "inAppVoiceIntent": "{\"target\":{\"intent\":\"$INTENT\",\"intentParam\":\"$INTENT_PARAM\",\"languageCode\":\"$LANG_CODE\"}}",
+    "supportQueryRouting": "{\"amazonAlexa\":true,\"googleAssistant\":true}",
+    "resolution": "1920x1080",
+    "enablePigScreenSaver": false,
     "trustLevel": "netcast",
     "privilegedJail": true,
     "supportQuickStart": true,
