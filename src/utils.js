@@ -11,7 +11,9 @@ export function handleLaunch(params) {
   // parameter do not respect "handlesRelaunch" appinfo option. We still
   // fallback to "contentTarget" if our custom param is not specified.
   //
-  const { target, contentTarget = target } = params;
+  let { target, contentTarget = target } = params;
+
+  if (contentTarget.indexOf('v=v=') != -1) contentTarget = contentTarget.replace('v=v=', 'v=');
 
   if (contentTarget && typeof contentTarget === 'string') {
     if (contentTarget.indexOf('https://www.youtube.com/tv?') === 0) {
