@@ -13,9 +13,10 @@ export function handleLaunch(params) {
   //
   let { target, contentTarget = target } = params;
 
-  if (contentTarget.indexOf('v=v=') != -1) contentTarget = contentTarget.replace('v=v=', 'v=');
 
   if (contentTarget && typeof contentTarget === 'string') {
+    if (contentTarget.indexOf('v=v=') != -1) contentTarget = contentTarget.replace('v=v=', 'v=');
+
     if (contentTarget.indexOf('https://www.youtube.com/tv?') === 0) {
       console.info('Launching from direct contentTarget:', contentTarget);
       window.location = contentTarget;
