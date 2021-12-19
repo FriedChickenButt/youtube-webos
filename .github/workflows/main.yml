@@ -32,3 +32,10 @@ jobs:
     - run: npm ci
     - run: npm run build
     - run: npm run package
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: youtube_adfree_ipk
+        path: |
+          ${{github.workspace}}/youtube.leanback.v4_*_all.ipk
