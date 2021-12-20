@@ -16,9 +16,16 @@
         "userAgent": "$browserName$/$browserVersion$ ($platformName$-$platformVersion$), _TV_$chipSetName$/$firmwareVersion$ (LG, $modelName$, $networkMode$)",
         "allowCrossDomain": true
     },
+    "deeplinkingParams": "{\"contentTarget\":\"v=$CONTENTID\"}",
+    "inAppSearchParams": "{\"contentTarget\":\"q=$SEARCH_KEYWORD\"}",
+    "inAppVoiceIntent": "{\"contentTarget\":{\"intent\":\"$INTENT\",\"intentParam\":\"$INTENT_PARAM\",\"languageCode\":\"$LANG_CODE\"}}",
+    "supportQueryRouting": "{\"amazonAlexa\":true,\"googleAssistant\":true}",
+    "resolution": "1920x1080",
+    "enablePigScreenSaver": false,
     "trustLevel": "netcast",
     "privilegedJail": true,
     "supportQuickStart": true,
     "dialAppName": "YouTube",
-    "disableBackHistoryAPI": true
+    "disableBackHistoryAPI": true,
+    "supportGIP": true
 }

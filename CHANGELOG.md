@@ -1,5 +1,10 @@
 # ChangeLog
 
+## Unreleased
+* Fixed deeplinking from voice search results
+* Fixed in-app voice search button on webOS 5.x
+* Fixed screensaver kicking in on sponsor segment skips
+
 ## Version 0.0.1
 * Created basic web app which launches YouTube TV.
 
