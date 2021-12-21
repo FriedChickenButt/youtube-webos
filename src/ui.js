@@ -78,7 +78,7 @@ document.addEventListener("keypress", eventHandler, true);
 document.addEventListener("keyup", eventHandler, true);
 
 
-export function showNotification(text, time=6000) {
+export function showNotification(text, time=3000) {
   if (!document.querySelector('.ytaf-notification-container')) {
     console.info('Adding notification container');
     const c = document.createElement('div');
