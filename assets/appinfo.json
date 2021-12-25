@@ -9,6 +9,7 @@
     "largeIcon": "largeIcon.png",
     "iconColor": "#ff0000",
     "support360Content": true,
+    "checkUpdateOnLaunch": false,
     "accessibility": {
         "supportsAudioGuidance": true
     },
