@@ -7,8 +7,9 @@ YouTube App with extended functionalities
 ## Features
 * Advertisements blocking
 * [SponsorBlock](https://sponsor.ajay.app/) integration
+* [Autostart](#autostart)
 
-**Note:** Configuration screen can be opened by pressing GREEN button on the remote.
+**Note:** Configuration screen can be opened by pressing 🟩 GREEN button on the remote.
 
 ## Pre-requisites
 * Official YouTube app needs to be uninstalled before installation.
@@ -20,6 +21,29 @@ YouTube App with extended functionalities
 prebuilt `.ipk` binary file
 * Use official webOS/webOS OSE SDK: `ares-install youtube...ipk` (for webOS SDK configuration
   see below)
+
+## Configuration
+Configuration screen can be opened by pressing 🟩 GREEN button on the remote.
+
+### Autostart
+In order to autostart an application the following command needs to be executed
+via SSH or Telnet:
+```sh
+luna-send-pub -n 1 'luna://com.webos.service.eim/addDevice' '{"appId":"youtube.leanback.v4","pigImage":"","mvpdIcon":""}'
+```
+
+This will make "YouTube AdFree" display as an eligible input application (next
+to HDMI/Live TV, etc...), and, if it was the last selected input, it will be
+automatically launched when turning on the TV.
+
+This will also greatly increase startup performance, since it will be runnning
+constantly in the background, at the cost of increased idle memory usage.
+(so far, relatively unnoticable in normal usage)
+
+In order to disable autostart run this:
+```sh
+luna-send -n 1 'luna://com.webos.service.eim/deleteDevice' '{"appId":"youtube.leanback.v4"}'
+```
 
 ## Building
 * Clone the repository

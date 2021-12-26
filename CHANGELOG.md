@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ## [0.2.0] - 2021/12/23
+### Added
+- Added support for autostart (requires manual setup, see
+  [README](README.md#autostart))
+
 ### Fixed
 - Fixed deeplinking from voice search results
 - Fixed in-app voice search button on webOS 5.x
