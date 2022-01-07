@@ -1,6 +1,4 @@
 import 'whatwg-fetch';
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
 import './domrect-polyfill';
 
 import {handleLaunch} from './utils';

@@ -1,4 +1,4 @@
-import sha256 from 'tiny-sha256';
+import * as sha256 from 'tiny-sha256';
 import {configRead} from './config';
 import {showNotification} from './ui';
 
@@ -149,15 +149,15 @@ class SponsorBlockHandler {
       this.segmentsoverlay.appendChild(elm);
     });
 
-    this.observer = new MutationObserver((mutations, observer) => {
+    this.observer = new MutationObserver((mutations) => {
       mutations.forEach((m) => {
         if (m.removedNodes) {
-          m.removedNodes.forEach(n => {
-            if (n === this.segmentsoverlay) {
+          for (const node of m.removedNodes) {
+            if (node === this.segmentsoverlay) {
               console.info('bringing back segments overlay');
               this.slider.appendChild(this.segmentsoverlay);
             }
-          });
+          }
         }
       })
     });
@@ -269,7 +269,7 @@ class SponsorBlockHandler {
 // shows my lack of understanding of javascript. (or both)
 window.sponsorblock = null;
 
-window.addEventListener("hashchange", (evt) => {
+window.addEventListener("hashchange", () => {
   const newURL = new URL(location.hash.substring(1), location.href);
   const videoID = newURL.searchParams.get('v');
   const needsReload = videoID && (!window.sponsorblock || window.sponsorblock.videoID != videoID);

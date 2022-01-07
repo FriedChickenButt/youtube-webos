@@ -1,3 +1,4 @@
+/*global navigate*/
 import './spatial-navigation-polyfill.js';
 import './ui.css';
 import {configRead, configWrite} from './config.js';

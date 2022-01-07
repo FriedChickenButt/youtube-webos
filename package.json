@@ -6,10 +6,11 @@
   "scripts": {
     "build": "webpack",
     "package": "ares-package -n dist",
-    "deploy": "ares-install youtube.leanback.v4_${npm_package_version}_all.ipk",
+    "deploy": "node tools/deploy.mjs",
     "launch": "ares-launch youtube.leanback.v4",
     "manifest": "node tools/gen-manifest.js youtube.leanback.v4.manifest.json",
-    "version": "node tools/sync-version.js && git add assets/appinfo.json"
+    "version": "node tools/sync-version.js && git add assets/appinfo.json",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -22,20 +23,32 @@
   },
   "homepage": "https://github.com/webosbrew/youtube-webos#readme",
   "dependencies": {
-    "core-js": "^3.13.1",
-    "regenerator-runtime": "^0.13.7",
+    "@babel/runtime": "^7.16.7",
+    "core-js-pure": "^3.20.2",
+    "regenerator-runtime": "^0.13.9",
     "tiny-sha256": "^1.0.2",
     "whatwg-fetch": "^3.6.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.3",
-    "@babel/preset-env": "^7.14.4",
-    "@webosose/ares-cli": "^2.1.0",
-    "babel-loader": "^8.2.2",
-    "copy-webpack-plugin": "^9.0.0",
-    "css-loader": "^5.2.6",
-    "style-loader": "^2.0.0",
-    "webpack": "^5.38.1",
-    "webpack-cli": "^4.7.0"
+    "@babel/core": "^7.16.7",
+    "@babel/plugin-transform-runtime": "^7.16.8",
+    "@babel/preset-env": "^7.16.8",
+    "@webosose/ares-cli": "^2.2.0",
+    "babel-loader": "^8.2.3",
+    "babel-plugin-polyfill-corejs3": "^0.5.0",
+    "babel-plugin-polyfill-regenerator": "^0.3.0",
+    "copy-webpack-plugin": "^10.2.0",
+    "css-loader": "^6.5.1",
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.7",
+    "prettier": "^2.5.1",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
+  },
+  "lint-staged": {
+    "*": "prettier --write --ignore-unknown"
   }
 }
