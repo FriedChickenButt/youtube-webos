@@ -1,39 +1,39 @@
 import * as sha256 from 'tiny-sha256';
-import {configRead} from './config';
-import {showNotification} from './ui';
+import { configRead } from './config';
+import { showNotification } from './ui';
 
 // Copied from https://github.com/ajayyy/SponsorBlock/blob/9392d16617d2d48abb6125c00e2ff6042cb7bebe/src/config.ts#L179-L233
 const barTypes = {
-  "sponsor": {
-    color: "#00d400",
-    opacity: "0.7",
-    name: "sponsored segment",
+  sponsor: {
+    color: '#00d400',
+    opacity: '0.7',
+    name: 'sponsored segment'
   },
-  "intro": {
-    color: "#00ffff",
-    opacity: "0.7",
-    name: "intro",
+  intro: {
+    color: '#00ffff',
+    opacity: '0.7',
+    name: 'intro'
   },
-  "outro": {
-    color: "#0202ed",
-    opacity: "0.7",
-    name: "outro",
+  outro: {
+    color: '#0202ed',
+    opacity: '0.7',
+    name: 'outro'
   },
-  "interaction": {
-    color: "#cc00ff",
-    opacity: "0.7",
-    name: "interaction reminder",
+  interaction: {
+    color: '#cc00ff',
+    opacity: '0.7',
+    name: 'interaction reminder'
   },
-  "selfpromo": {
-    color: "#ffff00",
-    opacity: "0.7",
-    name: "self-promotion",
+  selfpromo: {
+    color: '#ffff00',
+    opacity: '0.7',
+    name: 'self-promotion'
   },
-  "music_offtopic": {
-    color: "#ff9900",
-    opacity: "0.7",
-    name: "non-music part",
-  },
+  music_offtopic: {
+    color: '#ff9900',
+    opacity: '0.7',
+    name: 'non-music part'
+  }
 };
 
 const sponsorblockAPI = 'https://sponsorblock.inf.re/api';
@@ -58,8 +58,19 @@ class SponsorBlockHandler {
 
   async init() {
     const videoHash = sha256(this.videoID).substring(0, 4);
-    const categories = ["sponsor", "intro", "outro", "interaction", "selfpromo", "music_offtopic"];
-    const resp = await fetch(`${sponsorblockAPI}/skipSegments/${videoHash}?categories=${encodeURIComponent(JSON.stringify(categories))}`);
+    const categories = [
+      'sponsor',
+      'intro',
+      'outro',
+      'interaction',
+      'selfpromo',
+      'music_offtopic'
+    ];
+    const resp = await fetch(
+      `${sponsorblockAPI}/skipSegments/${videoHash}?categories=${encodeURIComponent(
+        JSON.stringify(categories)
+      )}`
+    );
     const results = await resp.json();
 
     const result = results.find((v) => v.videoID === this.videoID);
@@ -83,22 +94,22 @@ class SponsorBlockHandler {
   getSkippableCategories() {
     const skippableCategories = [];
     if (configRead('enableSponsorBlockSponsor')) {
-      skippableCategories.push("sponsor");
+      skippableCategories.push('sponsor');
     }
     if (configRead('enableSponsorBlockIntro')) {
-      skippableCategories.push("intro");
+      skippableCategories.push('intro');
     }
     if (configRead('enableSponsorBlockOutro')) {
-      skippableCategories.push("outro");
+      skippableCategories.push('outro');
     }
     if (configRead('enableSponsorBlockInteraction')) {
-      skippableCategories.push("interaction");
+      skippableCategories.push('interaction');
     }
     if (configRead('enableSponsorBlockSelfPromo')) {
-      skippableCategories.push("selfpromo");
+      skippableCategories.push('selfpromo');
     }
     if (configRead('enableSponsorBlockMusicOfftopic')) {
-      skippableCategories.push("music_offtopic");
+      skippableCategories.push('music_offtopic');
     }
     return skippableCategories;
   }
@@ -136,11 +147,16 @@ class SponsorBlockHandler {
     const videoDuration = this.video.duration;
 
     this.segmentsoverlay = document.createElement('div');
-    this.segments.forEach(segment => {
+    this.segments.forEach((segment) => {
       const [start, end] = segment.segment;
-      const barType = barTypes[segment.category] || { color: 'blue', opacity: 0.7};
-      const transform = `translateX(${start / videoDuration * 100.0}%) scaleX(${(end-start) / videoDuration})`;
-      const elm = document.createElement('div')
+      const barType = barTypes[segment.category] || {
+        color: 'blue',
+        opacity: 0.7
+      };
+      const transform = `translateX(${
+        (start / videoDuration) * 100.0
+      }%) scaleX(${(end - start) / videoDuration})`;
+      const elm = document.createElement('div');
       elm.classList.add('ytlr-progress-bar__played');
       elm.style['background'] = barType.color;
       elm.style['opacity'] = barType.opacity;
@@ -159,7 +175,7 @@ class SponsorBlockHandler {
             }
           }
         }
-      })
+      });
     });
 
     this.sliderInterval = setInterval(() => {
@@ -168,7 +184,7 @@ class SponsorBlockHandler {
         clearInterval(this.sliderInterval);
         this.sliderInterval = null;
         this.observer.observe(this.slider, {
-          childList: true,
+          childList: true
         });
         this.slider.appendChild(this.segmentsoverlay);
       }
@@ -192,7 +208,11 @@ class SponsorBlockHandler {
     // Sometimes timeupdate event (that calls scheduleSkip) gets fired right before
     // already scheduled skip routine below. Let's just look back a little bit
     // and, in worst case, perform a skip at negative interval (immediately)...
-    const nextSegments = this.segments.filter(seg => seg.segment[0] > this.video.currentTime - 0.3 && seg.segment[1] > this.video.currentTime - 0.3);
+    const nextSegments = this.segments.filter(
+      (seg) =>
+        seg.segment[0] > this.video.currentTime - 0.3 &&
+        seg.segment[1] > this.video.currentTime - 0.3
+    );
     nextSegments.sort((s1, s2) => s1.segment[0] - s2.segment[0]);
 
     if (!nextSegments.length) {
@@ -202,7 +222,13 @@ class SponsorBlockHandler {
 
     const [segment] = nextSegments;
     const [start, end] = segment.segment;
-    console.info(this.videoID, 'Scheduling skip of', segment, 'in', start - this.video.currentTime);
+    console.info(
+      this.videoID,
+      'Scheduling skip of',
+      segment,
+      'in',
+      start - this.video.currentTime
+    );
 
     this.nextSkipTimeout = setTimeout(() => {
       if (this.video.paused) {
@@ -210,7 +236,12 @@ class SponsorBlockHandler {
         return;
       }
       if (!this.skippableCategories.includes(segment.category)) {
-        console.info(this.videoID, 'Segment', segment.category, 'is not skippable, ignoring...');
+        console.info(
+          this.videoID,
+          'Segment',
+          segment.category,
+          'is not skippable, ignoring...'
+        );
         return;
       }
 
@@ -256,7 +287,10 @@ class SponsorBlockHandler {
       this.video.removeEventListener('play', this.scheduleSkipHandler);
       this.video.removeEventListener('pause', this.scheduleSkipHandler);
       this.video.removeEventListener('timeupdate', this.scheduleSkipHandler);
-      this.video.removeEventListener('durationchange', this.durationChangeHandler);
+      this.video.removeEventListener(
+        'durationchange',
+        this.durationChangeHandler
+      );
     }
   }
 }
@@ -269,28 +303,40 @@ class SponsorBlockHandler {
 // shows my lack of understanding of javascript. (or both)
 window.sponsorblock = null;
 
-window.addEventListener("hashchange", () => {
-  const newURL = new URL(location.hash.substring(1), location.href);
-  const videoID = newURL.searchParams.get('v');
-  const needsReload = videoID && (!window.sponsorblock || window.sponsorblock.videoID != videoID);
+window.addEventListener(
+  'hashchange',
+  () => {
+    const newURL = new URL(location.hash.substring(1), location.href);
+    const videoID = newURL.searchParams.get('v');
+    const needsReload =
+      videoID &&
+      (!window.sponsorblock || window.sponsorblock.videoID != videoID);
 
-  console.info('hashchange', videoID, window.sponsorblock, window.sponsorblock ? window.sponsorblock.videoID : null, needsReload);
+    console.info(
+      'hashchange',
+      videoID,
+      window.sponsorblock,
+      window.sponsorblock ? window.sponsorblock.videoID : null,
+      needsReload
+    );
 
-  if (needsReload) {
-    if (window.sponsorblock) {
-      try {
-        window.sponsorblock.destroy();
-      } catch (err) {
-        console.warn('window.sponsorblock.destroy() failed!', err);
+    if (needsReload) {
+      if (window.sponsorblock) {
+        try {
+          window.sponsorblock.destroy();
+        } catch (err) {
+          console.warn('window.sponsorblock.destroy() failed!', err);
+        }
+        window.sponsorblock = null;
       }
-      window.sponsorblock = null;
-    }
 
-    if (configRead('enableSponsorBlock')) {
-      window.sponsorblock = new SponsorBlockHandler(videoID);
-      window.sponsorblock.init();
-    } else {
-      console.info('SponsorBlock disabled, not loading');
+      if (configRead('enableSponsorBlock')) {
+        window.sponsorblock = new SponsorBlockHandler(videoID);
+        window.sponsorblock.init();
+      } else {
+        console.info('SponsorBlock disabled, not loading');
+      }
     }
-  }
-}, false);
+  },
+  false
+);

@@ -1,5 +1,5 @@
 const path = require('path');
-const CopyPlugin = require("copy-webpack-plugin");
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = (env) => [
   {
@@ -15,14 +15,15 @@ module.exports = (env) => [
 
     entry: {
       index: './src/index.js',
-      userScript: './src/userScript.js',
+      userScript: './src/userScript.js'
     },
     output: {
       path: path.resolve(__dirname, './dist'),
-      filename: ({ chunk: { name } }) => (name === 'userScript') ? 'webOSUserScripts/[name].js' : '[name].js',
+      filename: ({ chunk: { name } }) =>
+        name === 'userScript' ? 'webOSUserScripts/[name].js' : '[name].js'
     },
     resolve: {
-      extensions: ['.ts', '.js'],
+      extensions: ['.ts', '.js']
     },
     module: {
       rules: [
@@ -46,16 +47,16 @@ module.exports = (env) => [
             { loader: 'style-loader' },
             { loader: 'css-loader', options: { esModule: false } }
           ]
-        },
-      ],
+        }
+      ]
     },
     plugins: [
       new CopyPlugin({
         patterns: [
           { context: 'assets', from: '**/*' },
-          { context: 'src', from: 'index.html' },
+          { context: 'src', from: 'index.html' }
         ]
-      }),
-    ],
-  },
+      })
+    ]
+  }
 ];

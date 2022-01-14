@@ -5,13 +5,12 @@ name: Build & Test
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -20,22 +19,22 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v2
-      with:
-        submodules: recursive
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - run: npm ci
-    - run: npm run build
-    - run: npm run package
+      - run: npm ci
+      - run: npm run build
+      - run: npm run package
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: youtube_adfree_ipk
-        path: |
-          ${{github.workspace}}/youtube.leanback.v4_*_all.ipk
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: youtube_adfree_ipk
+          path: |
+            ${{github.workspace}}/youtube.leanback.v4_*_all.ipk

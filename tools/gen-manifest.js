@@ -6,7 +6,10 @@ const fs = require('fs');
 const outfile = process.argv[2];
 const appinfo = JSON.parse(fs.readFileSync('assets/appinfo.json'));
 const ipkfile = `${appinfo.id}_${appinfo.version}_all.ipk`;
-const ipkhash = crypto.createHash('sha256').update(fs.readFileSync(ipkfile)).digest('hex');
+const ipkhash = crypto
+  .createHash('sha256')
+  .update(fs.readFileSync(ipkfile))
+  .digest('hex');
 
 fs.writeFileSync(
   outfile,
@@ -16,12 +19,13 @@ fs.writeFileSync(
     type: appinfo.type,
     title: appinfo.title,
     appDescription: appinfo.appDescription,
-    iconUri: 'https://raw.githubusercontent.com/webosbrew/youtube-webos/main/assets/largeIcon.png',
+    iconUri:
+      'https://raw.githubusercontent.com/webosbrew/youtube-webos/main/assets/largeIcon.png',
     sourceUrl: 'https://github.com/webosbrew/youtube-webos',
     rootRequired: false,
     ipkUrl: ipkfile,
     ipkHash: {
-      sha256: ipkhash,
-    },
-  }),
+      sha256: ipkhash
+    }
+  })
 );

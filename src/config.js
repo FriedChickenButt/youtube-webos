@@ -7,7 +7,7 @@ const defaultConfig = {
   enableSponsorBlockOutro: true,
   enableSponsorBlockInteraction: true,
   enableSponsorBlockSelfPromo: true,
-  enableSponsorBlockMusicOfftopic: true,
+  enableSponsorBlockMusicOfftopic: true
 };
 
 let localConfig;
@@ -21,7 +21,12 @@ try {
 
 export function configRead(key) {
   if (localConfig[key] === undefined) {
-    console.warn('Populating key', key, 'with default value', defaultConfig[key]);
+    console.warn(
+      'Populating key',
+      key,
+      'with default value',
+      defaultConfig[key]
+    );
     localConfig[key] = defaultConfig[key];
   }
 
