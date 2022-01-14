@@ -1,31 +1,31 @@
 {
-    "id": "youtube.leanback.v4",
-    "version": "0.2.1",
-    "vendor": "My Company",
-    "type": "web",
-    "main": "index.html",
-    "title": "YouTube AdFree",
-    "icon": "icon.png",
-    "largeIcon": "largeIcon.png",
-    "iconColor": "#ff0000",
-    "support360Content": true,
-    "checkUpdateOnLaunch": false,
-    "accessibility": {
-        "supportsAudioGuidance": true
-    },
-    "vendorExtension": {
-        "userAgent": "$browserName$/$browserVersion$ ($platformName$-$platformVersion$), _TV_$chipSetName$/$firmwareVersion$ (LG, $modelName$, $networkMode$)",
-        "allowCrossDomain": true
-    },
-    "deeplinkingParams": "{\"contentTarget\":\"v=$CONTENTID\"}",
-    "inAppSearchParams": "{\"contentTarget\":\"q=$SEARCH_KEYWORD\"}",
-    "inAppVoiceIntent": "{\"contentTarget\":{\"intent\":\"$INTENT\",\"intentParam\":\"$INTENT_PARAM\",\"languageCode\":\"$LANG_CODE\"}}",
-    "supportQueryRouting": "{\"amazonAlexa\":true,\"googleAssistant\":true}",
-    "enablePigScreenSaver": false,
-    "trustLevel": "netcast",
-    "privilegedJail": true,
-    "supportQuickStart": true,
-    "dialAppName": "YouTube",
-    "disableBackHistoryAPI": true,
-    "supportGIP": true
+  "id": "youtube.leanback.v4",
+  "version": "0.2.1",
+  "vendor": "My Company",
+  "type": "web",
+  "main": "index.html",
+  "title": "YouTube AdFree",
+  "icon": "icon.png",
+  "largeIcon": "largeIcon.png",
+  "iconColor": "#ff0000",
+  "support360Content": true,
+  "checkUpdateOnLaunch": false,
+  "accessibility": {
+    "supportsAudioGuidance": true
+  },
+  "vendorExtension": {
+    "userAgent": "$browserName$/$browserVersion$ ($platformName$-$platformVersion$), _TV_$chipSetName$/$firmwareVersion$ (LG, $modelName$, $networkMode$)",
+    "allowCrossDomain": true
+  },
+  "deeplinkingParams": "{\"contentTarget\":\"v=$CONTENTID\"}",
+  "inAppSearchParams": "{\"contentTarget\":\"q=$SEARCH_KEYWORD\"}",
+  "inAppVoiceIntent": "{\"contentTarget\":{\"intent\":\"$INTENT\",\"intentParam\":\"$INTENT_PARAM\",\"languageCode\":\"$LANG_CODE\"}}",
+  "supportQueryRouting": "{\"amazonAlexa\":true,\"googleAssistant\":true}",
+  "enablePigScreenSaver": false,
+  "trustLevel": "netcast",
+  "privilegedJail": true,
+  "supportQuickStart": true,
+  "dialAppName": "YouTube",
+  "disableBackHistoryAPI": true,
+  "supportGIP": true
 }

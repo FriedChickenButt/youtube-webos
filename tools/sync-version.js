@@ -10,9 +10,9 @@ fs.writeFileSync(
   `${JSON.stringify(
     {
       ...appInfo,
-      version: packageInfo.version,
+      version: packageInfo.version
     },
     null,
-    4,
-  )}\n`,
+    4
+  )}\n`
 );
