@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [0.3.0] - 2022/01/15
+
+### Fixed
+
+- [#14](https://github.com/webosbrew/youtube-webos/pull/14): Fixed voice search
+  on certain TV models
+- [#21](https://github.com/webosbrew/youtube-webos/pull/21): Fixed screensaver
+  kicking in during non-16:9 videos playback
+
+## Changed
+
+- [#19](https://github.com/webosbrew/youtube-webos/pull/19): Updated internal
+  dependencies, cleaned up build setup
+
 ## [0.2.1] - 2021/12/26
 
 ## Fixed
@@ -60,3 +74,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Created basic web app which launches YouTube TV.
+
+[Unreleased]: https://github.com/webosbrew/youtube-webos/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/webosbrew/youtube-webos/compare/v0.2.1...v0.3.0
+[0.2.1]: https://github.com/webosbrew/youtube-webos/compare/v0.2.0...v0.2.1
+[0.2.0]: https://github.com/webosbrew/youtube-webos/compare/v0.1.1...v0.2.0
+[0.1.1]: https://github.com/webosbrew/youtube-webos/compare/v0.1.0...v0.1.1
+[0.1.0]: https://github.com/webosbrew/youtube-webos/compare/0.0.2...v0.1.0
+[0.0.2]: https://github.com/webosbrew/youtube-webos/compare/0.0.1...0.0.2
+[0.0.1]: https://github.com/webosbrew/youtube-webos/releases/tag/0.0.1
