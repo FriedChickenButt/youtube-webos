@@ -15,7 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - [#21](https://github.com/webosbrew/youtube-webos/pull/21): Fixed screensaver
   kicking in during non-16:9 videos playback
 
-## Changed
+### Changed
 
 - [#19](https://github.com/webosbrew/youtube-webos/pull/19): Updated internal
   dependencies, cleaned up build setup
