@@ -1,0 +1,6 @@
+{
+  "javascript.preferences.quoteStyle": "single",
+  "prettier.requireConfig": true,
+  "prettier.useEditorConfig": true,
+  "editor.formatOnSave": true
+}
