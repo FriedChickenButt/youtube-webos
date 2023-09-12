@@ -1,4 +1,4 @@
-const YT_BASE_URL = new URL('https://www.youtube.com/tv#/');
+const YT_BASE_URL = new URL('https://www.youtube.com/tv#/?launch=menu&env_forceFullAnimation=1/');
 const CONTENT_INTENT_REGEX = /^.+(?=Content)/g;
 
 export function extractLaunchParams() {
