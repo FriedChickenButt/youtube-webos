@@ -22,8 +22,8 @@ YouTube App with extended functionalities
 - Use [webOS Homebrew Channel](https://github.com/webosbrew/webos-homebrew-channel) - app is published in official webosbrew repo
 - Use [Device Manager app](https://github.com/webosbrew/dev-manager-desktop) - see [Releases](https://github.com/webosbrew/youtube-webos/releases) for a
   prebuilt `.ipk` binary file
-- Use official webOS/webOS OSE SDK: `ares-install youtube...ipk` (for webOS SDK configuration
-  see below)
+- Use [webOS TV CLI tools](https://webostv.developer.lge.com/develop/tools/cli-installation) -
+  `ares-install youtube...ipk` (for webOS CLI tools configuration see below)
 
 ## Configuration
 
@@ -73,7 +73,7 @@ npm run build && npm run package
 
 ## Development TV setup
 
-### Configuring @webosose/ares-cli with Developer Mode App
+### Configuring webOS TV CLI tools with Developer Mode App
 
 This is partially based on: https://webostv.developer.lge.com/develop/app-test/using-devmode-app/
 
@@ -87,7 +87,7 @@ This is partially based on: https://webostv.developer.lge.com/develop/app-test/u
 ares-setup-device -a webos -i "username=prisoner" -i "privatekey=/path/to/downloaded/webos_rsa" -i "passphrase=PASSPHRASE" -i "host=TV_IP" -i "port=9922"
 ```
 
-### Configuring @webosose/ares-cli with Homebrew Channel / root
+### Configuring webOS TV CLI tools with Homebrew Channel / root
 
 - Enable sshd in Homebrew Channel app
 - Generate ssh key on developer machine (`ssh-keygen`)
@@ -97,8 +97,6 @@ ares-setup-device -a webos -i "username=prisoner" -i "privatekey=/path/to/downlo
 ```sh
 ares-setup-device -a webos -i "username=root" -i "privatekey=/path/to/id_rsa" -i "passphrase=SSH_KEY_PASSPHRASE" -i "host=TV_IP" -i "port=22"
 ```
-
-**Note:** @webosose/ares-cli doesn't need to be installed globally - you can use a package installed locally after `npm install` in this repo by just prefixing above commands with local path, like so: `node_modules/.bin/ares-setup-device ...`
 
 ## Installation
 
