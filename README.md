@@ -75,7 +75,7 @@ npm run build && npm run package
 
 ### Configuring webOS TV CLI tools with Developer Mode App
 
-This is partially based on: https://webostv.developer.lge.com/develop/app-test/using-devmode-app/
+This is partially based on: https://webostv.developer.lge.com/develop/getting-started/developer-mode-app
 
 - Install Developer Mode app from Content Store
 - Enable developer mode, enable keyserver
