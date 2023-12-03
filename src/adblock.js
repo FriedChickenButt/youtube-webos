@@ -14,21 +14,56 @@ import { configRead } from './config';
 const origParse = JSON.parse;
 JSON.parse = function () {
   const r = origParse.apply(this, arguments);
-  if (r.adPlacements && configRead('enableAdBlock')) {
+  if (!configRead('enableAdBlock')) {
+    return r;
+  }
+
+  if (r.adPlacements) {
     r.adPlacements = [];
   }
 
-  // Drop "masthead" ad from home screen
-  if (
+  // remove ads from home
+  const homeSectionListRenderer =
     r?.contents?.tvBrowseRenderer?.content?.tvSurfaceContentRenderer?.content
-      ?.sectionListRenderer?.contents &&
-    configRead('enableAdBlock')
-  ) {
-    r.contents.tvBrowseRenderer.content.tvSurfaceContentRenderer.content.sectionListRenderer.contents =
-      r.contents.tvBrowseRenderer.content.tvSurfaceContentRenderer.content.sectionListRenderer.contents.filter(
-        (elm) => !elm.tvMastheadRenderer
-      );
+      ?.sectionListRenderer;
+  if (homeSectionListRenderer?.contents) {
+    // Drop the full width ad card, usually appears at the top of the page
+    homeSectionListRenderer.contents = homeSectionListRenderer.contents.filter(
+      (elm) => !elm.tvMastheadRenderer
+    );
+
+    // Drop ad tile from the horizontal shelf
+    removeAdSlotRenderer(homeSectionListRenderer);
+  }
+
+  // remove ad tile from search
+  const searchSectionListRenderer = r?.contents?.sectionListRenderer;
+  if (searchSectionListRenderer?.contents) {
+    removeAdSlotRenderer(searchSectionListRenderer);
   }
 
   return r;
 };
+
+// Drop `adSlotRenderer`
+// `adSlotRenderer` can occur as,
+// - sectionListRenderer.contents[*].adSlotRenderer
+// - sectionListRenderer.contents[*].shelfRenderer.content.horizontalListRenderer.items[*].adSlotRenderer
+function removeAdSlotRenderer(sectionListRenderer) {
+  // sectionListRenderer.contents[*].adSlotRenderer
+  sectionListRenderer.contents = sectionListRenderer.contents.filter(
+    (elm) => !elm.adSlotRenderer
+  );
+
+  // sectionListRenderer.contents[*].shelfRenderer.content.horizontalListRenderer.items[*].adSlotRenderer
+  const contentsWithShelfRenderer = sectionListRenderer.contents.filter(
+    (elm) => elm.shelfRenderer
+  );
+  contentsWithShelfRenderer.forEach((content) => {
+    const horizontalRenderer =
+      content.shelfRenderer.content.horizontalListRenderer;
+    horizontalRenderer.items = horizontalRenderer.items.filter(
+      (elm) => !elm.adSlotRenderer
+    );
+  });
+}
