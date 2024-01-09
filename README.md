@@ -57,7 +57,7 @@ luna-send -n 1 'luna://com.webos.service.eim/deleteDevice' '{"appId":"youtube.le
 - Clone the repository
 
 ```sh
-git clone https://github.com/FriedChickenButt/youtube-webos.git
+git clone https://github.com/webosbrew/youtube-webos.git
 ```
 
 - Enter the folder and build the App, this will generate a `*.ipk` file.
