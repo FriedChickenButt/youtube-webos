@@ -27,7 +27,7 @@
     "@babel/core": "^7.16.7",
     "@babel/plugin-transform-runtime": "^7.16.8",
     "@babel/preset-env": "^7.16.8",
-    "@webosose/ares-cli": "^2.2.0",
+    "@webos-tools/cli": "^3.0.2",
     "babel-loader": "^8.2.3",
     "babel-plugin-polyfill-corejs3": "^0.5.0",
     "babel-plugin-polyfill-regenerator": "^0.3.0",
