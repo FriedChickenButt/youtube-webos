@@ -207,3 +207,34 @@ export function showNotification(text, time = 3000) {
 setTimeout(() => {
   showNotification('Press [GREEN] to open YTAF configuration screen');
 }, 2000);
+
+function applyUIFixes() {
+  try {
+    const bodyClasses = document.body.classList;
+
+    const observer = new MutationObserver(function bodyClassCallback(
+      _records,
+      _observer
+    ) {
+      try {
+        if (bodyClasses.contains('app-quality-root')) {
+          bodyClasses.remove('app-quality-root');
+        }
+      } catch (e) {
+        console.error('error in <body> class observer callback:', e);
+      }
+    });
+
+    observer.observe(document.body, {
+      subtree: false,
+      childList: false,
+      attributes: true,
+      attributeFilter: ['class'],
+      characterData: false
+    });
+  } catch (e) {
+    console.error('error setting up <body> class observer:', e);
+  }
+}
+
+applyUIFixes();
