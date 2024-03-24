@@ -10,7 +10,9 @@
     "launch": "ares-launch youtube.leanback.v4",
     "manifest": "node tools/gen-manifest.js youtube.leanback.v4.manifest.json",
     "version": "node tools/sync-version.js && git add assets/appinfo.json",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint": "eslint src",
+    "prettier-check": "prettier --check ."
   },
   "repository": "github:webosbrew/youtube-webos",
   "license": "GPL-3.0-only",
