@@ -9,6 +9,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 - [#103](https://github.com/webosbrew/youtube-webos/pull/103): Fixed SponsorBlock on videos with chapters (@alyyousuf7)
+- [#131](https://github.com/webosbrew/youtube-webos/pull/131): Fixed minor README issue (@ANewDawn)
+
+### Changed
+
+- [#128](https://github.com/webosbrew/youtube-webos/pull/128): Updated workflows and dependencies (@throwaway96)
 
 ## [0.3.2] - 2024/03/07
 
