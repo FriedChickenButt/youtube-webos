@@ -22,6 +22,10 @@ JSON.parse = function () {
     r.adPlacements = [];
   }
 
+  if (Array.isArray(r.adSlots)) {
+    r.adSlots = [];
+  }
+
   // remove ads from home
   const homeSectionListRenderer =
     r?.contents?.tvBrowseRenderer?.content?.tvSurfaceContentRenderer?.content
