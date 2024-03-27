@@ -40,6 +40,15 @@ const defaultConfig = (() => {
   return ret;
 })();
 
+/** @type {Record<string, DocumentFragment>} as const */
+const configFrags = (() => {
+  let ret = {};
+  for (const k of configOptions.keys()) {
+    ret[k] = new DocumentFragment();
+  }
+  return ret;
+})();
+
 function loadStoredConfig() {
   const storage = window.localStorage.getItem(CONFIG_KEY);
 
@@ -95,7 +104,38 @@ export function configWrite(key, value) {
     throw new Error('tried to write unknown config key: ' + key);
   }
 
-  console.info('Setting key', key, 'to', value);
+  const oldValue =
+    localConfig[key] !== undefined ? localConfig[key] : defaultConfig[key];
+
+  console.info('Changing key', key, 'from', oldValue, 'to', value);
   localConfig[key] = value;
   window.localStorage[CONFIG_KEY] = JSON.stringify(localConfig);
+
+  configFrags[key].dispatchEvent(
+    new CustomEvent('ytafConfigChange', {
+      detail: { key, newValue: value, oldValue }
+    })
+  );
+}
+
+/**
+ * Add a listener for changes in the value of a specified config option
+ * @param {string} key Config option to monitor
+ * @param {(evt: Event) => void} callback Function to be called on change
+ */
+export function configAddChangeListener(key, callback) {
+  const frag = configFrags[key];
+
+  frag.addEventListener('ytafConfigChange', callback);
+}
+
+/**
+ * Remove a listener for changes in the value of a specified config option
+ * @param {string} key Config option to monitor
+ * @param {(evt: Event) => void} callback Function to be called on change
+ */
+export function configRemoveChangeListener(key, callback) {
+  const frag = configFrags[key];
+
+  frag.removeEventListener('ytafConfigChange', callback);
 }
