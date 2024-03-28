@@ -1,7 +1,12 @@
 /*global navigate*/
 import './spatial-navigation-polyfill.js';
+import {
+  configAddChangeListener,
+  configRead,
+  configWrite,
+  configGetDesc
+} from './config.js';
 import './ui.css';
-import { configRead, configWrite, configGetDesc } from './config.js';
 
 // We handle key events ourselves.
 window.__spatialNavigation__.keyMode = 'NONE';
@@ -115,6 +120,7 @@ function createOptionsPanel() {
   elmContainer.appendChild(elmHeading);
 
   elmContainer.appendChild(createConfigCheckbox('enableAdBlock'));
+  elmContainer.appendChild(createConfigCheckbox('hideLogo'));
   elmContainer.appendChild(createConfigCheckbox('enableSponsorBlock'));
 
   const elmBlock = document.createElement('blockquote');
@@ -218,9 +224,25 @@ export function showNotification(text, time = 3000) {
   }, time);
 }
 
-setTimeout(() => {
-  showNotification('Press [GREEN] to open YTAF configuration screen');
-}, 2000);
+/**
+ * Initialize ability to hide YouTube logo in top right corner.
+ */
+function initHideLogo() {
+  const style = document.createElement('style');
+  document.head.appendChild(style);
+
+  /** @type {(hide: boolean) => void} */
+  const setHidden = (hide) => {
+    const visibility = hide ? 'hidden' : 'visible';
+    style.textContent = `ytlr-redux-connect-ytlr-logo-entity { visibility: ${visibility}; }`;
+  };
+
+  setHidden(configRead('hideLogo'));
+
+  configAddChangeListener('hideLogo', (evt) => {
+    setHidden(evt.detail.newValue);
+  });
+}
 
 function applyUIFixes() {
   try {
@@ -252,3 +274,8 @@ function applyUIFixes() {
 }
 
 applyUIFixes();
+initHideLogo();
+
+setTimeout(() => {
+  showNotification('Press [GREEN] to open YTAF configuration screen');
+}, 2000);
