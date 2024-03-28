@@ -1,6 +1,6 @@
 const CONFIG_KEY = 'ytaf-configuration';
 
-export const configOptions = new Map([
+const configOptions = new Map([
   ['enableAdBlock', { default: true, desc: 'Enable ad blocking' }],
   ['enableSponsorBlock', { default: true, desc: 'Enable SponsorBlock' }],
   [
@@ -63,7 +63,7 @@ function configExists(key) {
   return configOptions.has(key);
 }
 
-export function getConfigDesc(key) {
+export function configGetDesc(key) {
   if (!configExists(key)) {
     throw new Error('tried to get desc for unknown config key: ' + key);
   }

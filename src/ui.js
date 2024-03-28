@@ -1,7 +1,7 @@
 /*global navigate*/
 import './spatial-navigation-polyfill.js';
 import './ui.css';
-import { configRead, configWrite, getConfigDesc } from './config.js';
+import { configRead, configWrite, configGetDesc } from './config.js';
 
 // We handle key events ourselves.
 window.__spatialNavigation__.keyMode = 'NONE';
@@ -48,7 +48,7 @@ function createConfigCheckbox(key) {
   const elmLabel = document.createElement('label');
   elmLabel.appendChild(elmInput);
   // Use non-breaking space (U+00A0)
-  elmLabel.appendChild(document.createTextNode('\u00A0' + getConfigDesc(key)));
+  elmLabel.appendChild(document.createTextNode('\u00A0' + configGetDesc(key)));
 
   return elmLabel;
 }
