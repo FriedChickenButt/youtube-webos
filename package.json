@@ -4,7 +4,8 @@
   "description": "Ad-free YouTube app for webOS",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --mode=production",
+    "build:dev": "webpack --mode=development",
     "package": "ares-package -n dist",
     "deploy": "node tools/deploy.mjs",
     "launch": "ares-launch youtube.leanback.v4",
