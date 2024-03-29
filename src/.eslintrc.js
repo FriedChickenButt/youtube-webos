@@ -3,10 +3,12 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
   root: true,
+
   env: {
     browser: true,
     es2024: true
   },
+
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
@@ -14,14 +16,24 @@ module.exports = {
       impliedStrict: true
     }
   },
+
   extends: ['eslint:recommended', 'prettier'],
+
   rules: {
-    'no-promise-executor-return': 'error',
-    'no-var': 'warn',
-    'no-unused-private-class-members': 'error',
+    'no-var': 'error',
     'no-await-in-loop': 'error',
-    'array-callback-return': 'error',
     'no-implicit-globals': ['error'],
-    'no-unused-vars': ['error', { vars: 'local', argsIgnorePattern: '^_' }]
+    'no-unused-vars': ['error', { vars: 'local', argsIgnorePattern: '^_' }],
+    'no-useless-rename': ['error'],
+    'arrow-body-style': ['error', 'as-needed'],
+    'no-lonely-if': 'error',
+    'prefer-object-has-own': 'error',
+    'prefer-exponentiation-operator': 'error',
+    'prefer-regex-literals': ['error', { disallowRedundantWrapping: true }],
+    'array-callback-return': ['error', { checkForEach: true, allowVoid: true }],
+    'no-constant-binary-expression': 'error', // default in 'eslint:recommended' since v9
+    'no-constructor-return': 'error',
+    'no-empty-static-block': 'error', // default in 'eslint:recommended' since v9
+    'no-unmodified-loop-condition': 'error'
   }
 };
