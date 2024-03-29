@@ -15,7 +15,8 @@ export default (api) => {
         '@babel/plugin-transform-runtime',
         {
           regenerator: false,
-          version: require('./package.json').dependencies['@babel/runtime']
+          version:
+            require('./package.json').dependencies['@babel/runtime-corejs3']
         }
       ],
       [
