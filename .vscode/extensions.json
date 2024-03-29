@@ -2,7 +2,6 @@
   "recommendations": [
     "editorconfig.editorconfig",
     "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint",
-    "eg2.vscode-npm-script"
+    "dbaeumer.vscode-eslint"
   ]
 }
