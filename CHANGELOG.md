@@ -7,7 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+
 - [#142](https://github.com/webosbrew/youtube-webos/pull/141): Blocked some additional ads (@throwaway96)
+- [#144](https://github.com/webosbrew/youtube-webos/pull/144): Added support for config change listeners (@throwaway96)
 
 ### Fixed
 
