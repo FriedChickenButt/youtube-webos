@@ -84,7 +84,13 @@ function createOptionsPanel() {
         navigate(ARROW_KEY_CODE[evt.keyCode]);
       } else if (evt.keyCode === 13) {
         // "OK" button
-        document.querySelector(':focus').click();
+
+        // The YouTube app generates these "OK" events from clicks (including
+        // with the Magic Remote), and we don't want to send a duplicate click
+        // event for those. It seems isTrusted is only true for "real" events.
+        if (evt.isTrusted === true) {
+          document.activeElement.click();
+        }
       } else if (evt.keyCode === 27) {
         // Back button
         showOptionsPanel(false);
