@@ -1,8 +1,7 @@
-const path = require('node:path');
 const CopyPlugin = require('copy-webpack-plugin');
 
 /** @type {(env: Record<string, string>) => (import('webpack').Configuration)[]} */
-module.exports = (env) => [
+module.exports = () => [
   {
     /**
      * NOTE: Builds with devtool = 'eval' contain very big eval chunks which seem
