@@ -1,4 +1,8 @@
-module.exports = (api) => {
+import Module from 'node:module';
+
+const require = Module.createRequire(import.meta.url);
+
+export default (api) => {
   api.cache.never();
 
   return {
