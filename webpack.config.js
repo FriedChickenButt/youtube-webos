@@ -1,34 +1,31 @@
-const path = require('path');
+const path = require('node:path');
 const CopyPlugin = require('copy-webpack-plugin');
 
+/** @type {(env: Record<string, string>) => (import('webpack').Configuration)[]} */
 module.exports = (env) => [
   {
-    mode: env.production ? 'production' : 'development',
-
-    target: 'browserslist',
-
-    // Builds with devtool support (development) contain very big eval chunks,
-    // which seem to cause segfaults (at least) on nodeJS v0.12.2 used on webOS 3.x.
-    // This feature makes sense only when using recent enough chrome-based
-    // node inspector anyway.
+    /**
+     * NOTE: Builds with devtool = 'eval' contain very big eval chunks which seem
+     * to cause segfaults (at least) on nodeJS v0.12.2 used on webOS 3.x.
+     */
     devtool: 'source-map',
 
     entry: {
       index: './src/index.js',
-      userScript: './src/userScript.js'
+      userScript: {
+        import: './src/userScript.js',
+        filename: 'webOSUserScripts/[name].js'
+      }
     },
-    output: {
-      path: path.resolve(__dirname, './dist'),
-      filename: ({ chunk: { name } }) =>
-        name === 'userScript' ? 'webOSUserScripts/[name].js' : '[name].js'
-    },
+
     resolve: {
-      extensions: ['.ts', '.js']
+      extensions: ['.mjs', '.cjs', '.js', '.json']
     },
+
     module: {
       rules: [
         {
-          test: /\.m?js$/,
+          test: /\.(?:m|c)?js$/i,
           loader: 'babel-loader',
           exclude: [
             // Some module should not be transpiled by Babel
@@ -50,6 +47,7 @@ module.exports = (env) => [
         }
       ]
     },
+
     plugins: [
       new CopyPlugin({
         patterns: [

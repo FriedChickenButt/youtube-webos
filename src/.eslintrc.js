@@ -1,16 +1,17 @@
 /* eslint-env node */
 
+/** @type {import('eslint').Linter.Config} */
 module.exports = {
+  root: true,
   env: {
     browser: true,
-    es2021: true
+    es2024: true
   },
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
     ecmaFeatures: {
-      impliedStrict: true,
-      jsx: true
+      impliedStrict: true
     }
   },
   extends: ['eslint:recommended', 'prettier'],
