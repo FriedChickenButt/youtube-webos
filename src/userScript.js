@@ -21,7 +21,8 @@ import './ui.js';
   /** @type {HTMLVideoElement} */
   const video = await waitForChildAdd(
     document.body,
-    (node) => node instanceof HTMLVideoElement
+    (node) => node instanceof HTMLVideoElement,
+    false
   );
 
   const playerCtrlObs = new MutationObserver(() => {

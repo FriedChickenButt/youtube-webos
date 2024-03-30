@@ -7,13 +7,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+
 - [#142](https://github.com/webosbrew/youtube-webos/pull/141): Blocked some additional ads (@throwaway96)
+- [#144](https://github.com/webosbrew/youtube-webos/pull/144): Added support for config change listeners (@throwaway96)
 
 ### Fixed
 
 - [#103](https://github.com/webosbrew/youtube-webos/pull/103): Fixed SponsorBlock on videos with chapters (@alyyousuf7)
 - [#131](https://github.com/webosbrew/youtube-webos/pull/131): Fixed minor README issue (@ANewDawn)
 - [#141](https://github.com/webosbrew/youtube-webos/pull/141): Fixed black background behind video menu (@throwaway96; thanks to @reisxd)
+- [#143](https://github.com/webosbrew/youtube-webos/pull/143): Fixed duplicate click bug (@throwaway96)
 
 ### Changed
 
@@ -21,6 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - [#133](https://github.com/webosbrew/youtube-webos/pull/133): Changed various dev stuff (@throwaway96)
 - [#134](https://github.com/webosbrew/youtube-webos/pull/134): Refactored config/UI code (@throwaway96)
 - [#138](https://github.com/webosbrew/youtube-webos/pull/138): Changed webpack to production mode by default (@throwaway96)
+- [#145](https://github.com/webosbrew/youtube-webos/pull/145): Made observing attributes optional in waitForChildAdd() (@throwaway96)
 
 ## [0.3.2] - 2024/03/07
 
