@@ -4,12 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [0.3.3] - 2024/03/31
 
 ### Added
 
 - [#142](https://github.com/webosbrew/youtube-webos/pull/141): Blocked some additional ads (@throwaway96)
 - [#144](https://github.com/webosbrew/youtube-webos/pull/144): Added support for config change listeners (@throwaway96)
+- [#149](https://github.com/webosbrew/youtube-webos/pull/149): Added ability to hide YouTube logo (@throwaway96; thanks to @fire332 and @tomikaka22)
 
 ### Fixed
 
