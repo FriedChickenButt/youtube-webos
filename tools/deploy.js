@@ -10,5 +10,5 @@ process.exit(
       )
     ],
     { stdio: 'inherit', shell: true }
-  ).status
+  ).status ?? 0
 );

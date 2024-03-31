@@ -3,5 +3,13 @@
   "compilerOptions": {
     "checkJs": true
   },
-  "include": ["./*", "./.*"]
+  "include": [
+    "./tools",
+    "./assets/appinfo.json",
+    "./package.json",
+    "./webpack.config.js",
+    "eslint.config.js",
+    "babel.config.js",
+    ".prettierrc.js"
+  ]
 }
