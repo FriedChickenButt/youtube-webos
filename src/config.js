@@ -29,6 +29,13 @@ const configOptions = new Map([
       default: true,
       desc: 'Skip music and off-topic segments'
     }
+  ],
+  [
+    'hideLogo',
+    {
+      default: false,
+      desc: 'Hide YouTube logo'
+    }
   ]
 ]);
 
