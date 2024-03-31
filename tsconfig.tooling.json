@@ -3,5 +3,5 @@
   "compilerOptions": {
     "checkJs": true
   },
-  "include": ["./*", "./**/.eslintrc.js"]
+  "include": ["./*", "./.*", "./**/.eslintrc.js"]
 }
