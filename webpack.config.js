@@ -25,6 +25,7 @@ const makeConfig = () => [
       rules: [
         {
           test: /\.(?:m|c)?js$/i,
+
           loader: 'babel-loader',
           exclude: [
             // Some module should not be transpiled by Babel
@@ -35,6 +36,10 @@ const makeConfig = () => [
           ],
           options: {
             cacheDirectory: true
+          },
+          resolve: {
+            // File extension DON'T MATTER in a bundler.
+            fullySpecified: false
           }
         },
         {
