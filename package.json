@@ -13,7 +13,7 @@
     "version": "node tools/sync-version.js && git add assets/appinfo.json",
     "prepare": "husky install",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
-    "prettier-check": "prettier --check ."
+    "prettier-check": "prettier --ignore-path .prettierignore --check ."
   },
   "repository": "github:webosbrew/youtube-webos",
   "license": "GPL-3.0-only",
