@@ -1,7 +1,7 @@
-const CopyPlugin = require('copy-webpack-plugin');
+import CopyPlugin from 'copy-webpack-plugin';
 
 /** @type {(env: Record<string, string>) => (import('webpack').Configuration)[]} */
-module.exports = () => [
+const makeConfig = () => [
   {
     /**
      * NOTE: Builds with devtool = 'eval' contain very big eval chunks which seem
@@ -57,3 +57,5 @@ module.exports = () => [
     ]
   }
 ];
+
+export default makeConfig;

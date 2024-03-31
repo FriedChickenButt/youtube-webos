@@ -1,5 +1,5 @@
 /** @type {import('prettier').Config} */
-module.exports = {
+const config = {
   trailingComma: 'none',
   singleQuote: true,
   overrides: [
@@ -11,3 +11,5 @@ module.exports = {
     }
   ]
 };
+
+export default config;

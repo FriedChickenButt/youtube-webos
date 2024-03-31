@@ -1,9 +1,11 @@
 /* eslint-env node */
 
 /** @type {import('eslint').Linter.Config} */
-module.exports = {
+const config = {
   env: {
     browser: true,
     node: false
   }
 };
+
+module.exports = config;

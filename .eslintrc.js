@@ -1,5 +1,5 @@
 /** @type {import('eslint').Linter.Config} */
-module.exports = {
+const config = {
   root: true,
 
   env: {
@@ -35,3 +35,5 @@ module.exports = {
     'no-unmodified-loop-condition': 'error'
   }
 };
+
+module.exports = config;
