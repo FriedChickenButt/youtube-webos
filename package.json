@@ -9,6 +9,7 @@
     "build:dev": "webpack --mode=development",
     "package": "ares-package -n dist",
     "deploy": "node tools/deploy.js",
+    "inspect": "ares-inspect youtube.leanback.v4",
     "launch": "ares-launch youtube.leanback.v4",
     "manifest": "node tools/gen-manifest.cjs youtube.leanback.v4.manifest.json",
     "version": "node tools/sync-version.cjs && git add assets/appinfo.json",
