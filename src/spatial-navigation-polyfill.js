@@ -1754,3 +1754,9 @@
     spatialNavigationHandler();
   });
 })();
+
+/**
+ * Force babel to interpret this file as ESM so it
+ * polyfills with ESM imports instead of CommonJS.
+ */
+export {}
