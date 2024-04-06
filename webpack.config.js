@@ -24,7 +24,7 @@ const makeConfig = () => [
     module: {
       rules: [
         {
-          test: /\.(?:m|c)?js$/i,
+          test: /\.[mc]?js$/i,
 
           loader: 'babel-loader',
           exclude: [
