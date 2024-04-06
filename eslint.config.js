@@ -4,6 +4,8 @@ import Module from 'node:module';
 
 import eslintJs from '@eslint/js';
 import prettierConfig from 'eslint-config-prettier';
+// @ts-expect-error No type definitions available for this package. https://github.com/ota-meshi/eslint-plugin-regexp/issues/723
+import * as regexpPlugin from 'eslint-plugin-regexp';
 import globals from 'globals';
 
 const require = Module.createRequire(import.meta.url);
@@ -18,6 +20,7 @@ const defaultSourceType =
 export default [
   eslintJs.configs.recommended,
   prettierConfig,
+  regexpPlugin.configs['flat/recommended'],
 
   {
     linterOptions: {
@@ -53,7 +56,16 @@ export default [
       ],
       'no-constructor-return': 'error',
       'no-unmodified-loop-condition': 'error',
-      'no-useless-assignment': 'error'
+      'no-useless-assignment': 'error',
+
+      /* eslint-plugin-regexp */
+      'regexp/prefer-character-class': ['error', { minAlternatives: 2 }],
+      'regexp/no-empty-alternative': 'error', // Set to warn in recommended config
+      'regexp/no-lazy-ends': 'error', // Set to warn in recommended config
+      'regexp/no-potentially-useless-backreference': 'error', // Set to warn in recommended config
+      'regexp/confusing-quantifier': 'error', // Set to warn in recommended config
+      'regexp/no-useless-flag': 'error', // Set to warn in recommended config
+      'regexp/optimal-lookaround-quantifier': 'error' // Set to warn in recommended config
     }
   },
 

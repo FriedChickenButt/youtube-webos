@@ -46,6 +46,7 @@
     "css-loader": "^7.0.0",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-regexp": "^2.4.0",
     "globals": "^15.0.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
