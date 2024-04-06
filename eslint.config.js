@@ -51,9 +51,7 @@ export default [
         'error',
         { checkForEach: true, allowVoid: true }
       ],
-      'no-constant-binary-expression': 'error', // default in 'eslint:recommended' since v9
       'no-constructor-return': 'error',
-      'no-empty-static-block': 'error', // default in 'eslint:recommended' since v9
       'no-unmodified-loop-condition': 'error'
     }
   },
