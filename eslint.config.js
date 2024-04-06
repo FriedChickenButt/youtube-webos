@@ -52,7 +52,8 @@ export default [
         { checkForEach: true, allowVoid: true }
       ],
       'no-constructor-return': 'error',
-      'no-unmodified-loop-condition': 'error'
+      'no-unmodified-loop-condition': 'error',
+      'no-useless-assignment': 'error'
     }
   },
 
