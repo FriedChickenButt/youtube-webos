@@ -10,6 +10,7 @@
     "./webpack.config.js",
     "eslint.config.js",
     "babel.config.js",
-    ".prettierrc.js"
+    ".prettierrc.js",
+    "lint-staged.config.js"
   ]
 }
