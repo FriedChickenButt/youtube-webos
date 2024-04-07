@@ -1,4 +1,4 @@
-import * as sha256 from 'tiny-sha256';
+import sha256 from 'tiny-sha256';
 import { configRead } from './config';
 import { showNotification } from './ui';
 
