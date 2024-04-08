@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+
+### Changed
+
+- [#146](https://github.com/webosbrew/youtube-webos/pull/146): Updated a bunch of dev stuff (@fire332)
+- [#150](https://github.com/webosbrew/youtube-webos/pull/150): Added myself to FUNDING.yml (@throwaway96)
+
 ## [0.3.3] - 2024/03/31
 
 ### Added
