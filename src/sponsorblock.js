@@ -1,4 +1,4 @@
-import * as sha256 from 'tiny-sha256';
+import sha256 from 'tiny-sha256';
 import { configRead } from './config';
 import { showNotification } from './ui';
 
@@ -303,27 +303,30 @@ class SponsorBlockHandler {
       start - this.video.currentTime
     );
 
-    this.nextSkipTimeout = setTimeout(() => {
-      if (this.video.paused) {
-        console.info(this.videoID, 'Currently paused, ignoring...');
-        return;
-      }
-      if (!this.skippableCategories.includes(segment.category)) {
-        console.info(
-          this.videoID,
-          'Segment',
-          segment.category,
-          'is not skippable, ignoring...'
-        );
-        return;
-      }
+    this.nextSkipTimeout = setTimeout(
+      () => {
+        if (this.video.paused) {
+          console.info(this.videoID, 'Currently paused, ignoring...');
+          return;
+        }
+        if (!this.skippableCategories.includes(segment.category)) {
+          console.info(
+            this.videoID,
+            'Segment',
+            segment.category,
+            'is not skippable, ignoring...'
+          );
+          return;
+        }
 
-      const skipName = barTypes[segment.category]?.name || segment.category;
-      console.info(this.videoID, 'Skipping', segment);
-      showNotification(`Skipping ${skipName}`);
-      this.video.currentTime = end;
-      this.scheduleSkip();
-    }, (start - this.video.currentTime) * 1000);
+        const skipName = barTypes[segment.category]?.name || segment.category;
+        console.info(this.videoID, 'Skipping', segment);
+        showNotification(`Skipping ${skipName}`);
+        this.video.currentTime = end;
+        this.scheduleSkip();
+      },
+      (start - this.video.currentTime) * 1000
+    );
   }
 
   destroy() {

@@ -2,14 +2,14 @@
 
 const fs = require('fs');
 
-const packageInfo = JSON.parse(fs.readFileSync('package.json'));
-const appInfo = JSON.parse(fs.readFileSync('assets/appinfo.json'));
+const packageInfo = require('../package.json');
+const appinfo = require('../assets/appinfo.json');
 
 fs.writeFileSync(
   'assets/appinfo.json',
   `${JSON.stringify(
     {
-      ...appInfo,
+      ...appinfo,
       version: packageInfo.version
     },
     null,

@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "checkJs": true
+  },
+  "include": [
+    "./tools",
+    "./assets/appinfo.json",
+    "./package.json",
+    "./webpack.config.js",
+    "eslint.config.js",
+    "babel.config.js",
+    ".prettierrc.js",
+    "lint-staged.config.js"
+  ]
+}
