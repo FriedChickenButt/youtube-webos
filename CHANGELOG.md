@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [0.3.4] - 2024/04/07
+## [0.3.4] - 2024/04/23
+
+### Added
+
+- [#164](https://github.com/webosbrew/youtube-webos/pull/164): Added an issue template for bugs (@throwaway96)
 
 ### Changed
 
