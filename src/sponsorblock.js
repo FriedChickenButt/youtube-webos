@@ -48,6 +48,7 @@ class SponsorBlockHandler {
   scheduleSkipHandler = null;
   durationChangeHandler = null;
   segments = null;
+  skippableCategories = [];
 
   constructor(videoID) {
     this.videoID = videoID;
@@ -68,12 +69,36 @@ class SponsorBlockHandler {
     }
 
     this.segments = result.segments;
+    this.skippableCategories = this.getSkippableCategories();
 
     this.scheduleSkipHandler = () => this.scheduleSkip();
     this.durationChangeHandler = () => this.buildOverlay();
 
     this.attachVideo();
     this.buildOverlay();
+  }
+
+  getSkippableCategories() {
+    const skippableCategories = [];
+    if (configRead('enableSponsorBlockSponsor')) {
+      skippableCategories.push("sponsor");
+    }
+    if (configRead('enableSponsorBlockIntro')) {
+      skippableCategories.push("intro");
+    }
+    if (configRead('enableSponsorBlockOutro')) {
+      skippableCategories.push("outro");
+    }
+    if (configRead('enableSponsorBlockInteraction')) {
+      skippableCategories.push("interaction");
+    }
+    if (configRead('enableSponsorBlockSelfPromo')) {
+      skippableCategories.push("selfpromo");
+    }
+    if (configRead('enableSponsorBlockMusicOfftopic')) {
+      skippableCategories.push("music_offtopic");
+    }
+    return skippableCategories;
   }
 
   attachVideo() {
@@ -180,6 +205,10 @@ class SponsorBlockHandler {
     this.nextSkipTimeout = setTimeout(() => {
       if (this.video.paused) {
         console.info(this.videoID, 'Currently paused, ignoring...');
+        return;
+      }
+      if (!this.skippableCategories.includes(segment.category)) {
+        console.info(this.videoID, 'Segment', segment.category, 'is not skippable, ignoring...');
         return;
       }
 
