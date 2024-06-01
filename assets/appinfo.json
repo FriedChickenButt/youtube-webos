@@ -1,7 +1,7 @@
 {
   "id": "youtube.leanback.v4",
-  "version": "0.0.2",
-  "vendor": "My Company",
+  "version": "0.3.4",
+  "vendor": "webosbrew.org",
   "type": "web",
   "main": "index.html",
   "title": "YouTube AdFree",
@@ -9,16 +9,23 @@
   "largeIcon": "largeIcon.png",
   "iconColor": "#ff0000",
   "support360Content": true,
+  "checkUpdateOnLaunch": false,
   "accessibility": {
     "supportsAudioGuidance": true
   },
   "vendorExtension": {
-      "userAgent": "$browserName$/$browserVersion$ ($platformName$-$platformVersion$), _TV_$chipSetName$/$firmwareVersion$ (LG, $modelName$, $networkMode$)",
-      "allowCrossDomain": true
+    "userAgent": "$browserName$/$browserVersion$ ($platformName$-$platformVersion$), _TV_O18/$firmwareVersion$ (LG, $modelName$, $networkMode$)",
+    "allowCrossDomain": true
   },
+  "deeplinkingParams": "{\"contentTarget\":\"v=$CONTENTID\"}",
+  "inAppSearchParams": "{\"target\":\"q=$SEARCH_KEYWORD\"}",
+  "inAppVoiceIntent": "{\"target\":{\"intent\":\"$INTENT\",\"intentParam\":\"$INTENT_PARAM\",\"languageCode\":\"$LANG_CODE\"}}",
+  "supportQueryRouting": "{\"amazonAlexa\":true,\"googleAssistant\":true}",
+  "enablePigScreenSaver": false,
   "trustLevel": "netcast",
   "privilegedJail": true,
   "supportQuickStart": true,
   "dialAppName": "YouTube",
-  "disableBackHistoryAPI": true
+  "disableBackHistoryAPI": true,
+  "supportGIP": true
 }
